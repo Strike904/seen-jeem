@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>سين جيم · كوفي هاوس</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800;900&family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet" />
+<style>
+:root{
+    --red:#D63B26; --orange:#EE6C2D; --amber:#F4A024;
+    --cream:#F6F1EA; --card:#FFFFFF; --soft:#FBF7F2;
+    --ink:#2B2723; --ink-soft:#8C8178; --line:#ECE3DA;
+    --t0:#EE6C2D; --t1:#2E9CCA;
+    --green:#27AE60; --green-d:#1E8E50; --wrong:#D63B26;
+    --grad-hero:linear-gradient(135deg,#C9341F 0%,#E8572A 48%,#F6A623 100%);
+    --grad-btn:linear-gradient(90deg,#E8542A 0%,#F39A2E 100%);
+    --grad-red:linear-gradient(90deg,#C9341F 0%,#EE6C2D 100%);
+    --grad-blue:linear-gradient(90deg,#2E9CCA 0%,#5FBDE3 100%);
+    --sh-sm:0 2px 10px rgba(60,40,25,.06);
+    --sh-md:0 12px 34px rgba(60,40,25,.10);
+    --sh-btn:0 9px 22px rgba(232,84,42,.32);
+    --r-lg:24px; --r-md:16px; --r-sm:12px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{-webkit-text-size-adjust:100%;}
+body{font-family:'Tajawal','Segoe UI',sans-serif;background:var(--cream);color:var(--ink);
+    min-height:100vh;display:flex;flex-direction:column;align-items:center;
+    background-image:radial-gradient(circle at 12% 0,rgba(238,108,45,.05),transparent 38%),radial-gradient(circle at 90% 6%,rgba(46,156,202,.05),transparent 42%);}
+
+/* ===== Hero ===== */
+.hero-wrap{width:100%;position:relative;}
+.hero{background:var(--grad-hero);text-align:center;color:#fff;padding:34px 20px 50px;
+    border-radius:0 0 40px 40px;position:relative;overflow:hidden;}
+.hero::after{content:"";position:absolute;inset:0;
+    background:radial-gradient(ellipse at 28% 12%,rgba(255,255,255,.16),transparent 55%);pointer-events:none;}
+.hero::before{content:"";position:absolute;inset:0;opacity:.10;pointer-events:none;
+    background-image:radial-gradient(circle,rgba(255,255,255,.9) 1px,transparent 1.4px);background-size:22px 22px;}
+.logo{position:relative;z-index:2;font-family:'Cairo',sans-serif;font-weight:900;
+    font-size:clamp(2.9rem,11vw,4.4rem);line-height:.82;text-shadow:0 6px 22px rgba(90,18,8,.32);letter-spacing:1px;}
+.logo span{display:block;} .logo .l2{margin-right:.3em;}
+.logo-underline{position:relative;z-index:2;width:74px;height:5px;border-radius:6px;background:rgba(255,255,255,.85);margin:12px auto 0;}
+.sub-title{position:relative;z-index:2;font-size:clamp(.92rem,2.6vw,1.15rem);font-weight:700;margin-top:12px;opacity:.97;}
+.badges{position:relative;z-index:2;display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:14px;}
+.badge{display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,.16);
+    padding:5px 16px;border-radius:30px;font-size:clamp(.66rem,1.9vw,.82rem);font-weight:700;
+    border:1px solid rgba(255,255,255,.22);backdrop-filter:blur(4px);}
+
+/* ===== Mini bar ===== */
+.mini-bar{width:100%;background:var(--grad-hero);display:flex;justify-content:space-between;align-items:center;
+    padding:10px 18px;border-radius:0 0 22px 22px;box-shadow:0 6px 22px rgba(60,40,25,.12);flex-wrap:wrap;gap:8px;}
+.brand-mini{font-family:'Cairo',sans-serif;font-weight:900;font-size:1.05rem;line-height:1;text-align:center;color:#fff;text-shadow:0 2px 8px rgba(0,0,0,.2);}
+.brand-mini small{display:block;font-size:.5em;letter-spacing:2px;font-weight:700;opacity:.85;}
+.user-info{display:flex;align-items:center;gap:9px;color:#fff;font-weight:700;font-size:.85rem;flex-wrap:wrap;}
+.avatar{width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.22);display:flex;align-items:center;justify-content:center;font-size:1.1rem;border:1.5px solid rgba(255,255,255,.35);}
+.games-left{background:rgba(255,255,255,.16);padding:3px 12px;border-radius:20px;font-size:.74rem;}
+.games-left span{font-weight:900;}
+.logout-btn{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.32);color:#fff;padding:4px 13px;border-radius:20px;cursor:pointer;font-size:.74rem;font-weight:700;font-family:inherit;transition:background .2s;}
+.logout-btn:hover{background:rgba(255,255,255,.32);}
+
+/* ===== Layout ===== */
+.container{width:100%;max-width:880px;padding:0 16px 44px;position:relative;z-index:4;margin-top:-30px;}
+.card{background:var(--card);border-radius:var(--r-lg);padding:26px 22px;box-shadow:var(--sh-md);border:1px solid rgba(60,40,25,.05);}
+.screen{display:none;animation:rise .42s cubic-bezier(.2,.7,.2,1) both;}
+.screen.active{display:block;}
+@keyframes rise{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:none;}}
+.section-title{font-family:'Cairo',sans-serif;font-weight:800;font-size:1.5rem;text-align:center;color:var(--ink);margin-bottom:5px;}
+.section-sub{text-align:center;color:var(--ink-soft);font-size:.9rem;line-height:1.65;margin-bottom:18px;font-weight:500;}
+
+/* ===== Landing ===== */
+.landing-card{text-align:center;padding:26px 22px 22px;background:linear-gradient(180deg,#fff 0%,#fdfaf6 100%);}
+.greeting{font-family:'Cairo',sans-serif;font-weight:900;font-size:1.55rem;color:var(--ink);margin-bottom:2px;}
+.greeting-sub{color:var(--ink-soft);font-size:.93rem;margin-bottom:16px;}
+.login-section{display:flex;flex-direction:column;gap:10px;max-width:420px;margin:0 auto 14px;}
+.login-row{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;}
+.login-input{padding:11px 16px;border-radius:30px;border:2px solid var(--line);font-family:inherit;font-size:.9rem;font-weight:600;background:var(--soft);flex:1;min-width:130px;max-width:200px;transition:border-color .2s,box-shadow .2s;}
+.login-input:focus{outline:none;border-color:var(--orange);box-shadow:0 0 0 4px rgba(238,108,45,.12);}
+.login-btn{padding:11px 26px;border-radius:30px;border:none;background:var(--grad-btn);color:#fff;font-weight:800;font-size:.9rem;cursor:pointer;transition:transform .15s,filter .2s;font-family:'Cairo',sans-serif;box-shadow:var(--sh-btn);}
+.login-btn:hover{transform:translateY(-2px);filter:brightness(1.04);}
+.guest-btn{padding:11px 26px;border-radius:30px;border:2px solid var(--line);background:#fff;color:var(--ink-soft);font-weight:700;font-size:.9rem;cursor:pointer;transition:all .2s;font-family:'Tajawal',sans-serif;}
+.guest-btn:hover{border-color:var(--orange);color:var(--orange);}
+.register-link{color:var(--orange);cursor:pointer;font-weight:800;font-size:.85rem;}
+.register-link:hover{text-decoration:underline;}
+.login-msg{color:var(--red);font-size:.8rem;font-weight:700;min-height:1.2em;}
+.features-row{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:12px 0 16px;}
+.feat{background:var(--soft);padding:6px 15px;border-radius:30px;font-size:.74rem;font-weight:700;color:var(--ink-soft);border:1px solid var(--line);}
+.feat strong{color:var(--orange);}
+.side-buttons{display:flex;justify-content:center;gap:7px;flex-wrap:wrap;margin:8px 0 14px;}
+.side-btn{background:var(--soft);border:2px solid var(--line);border-radius:30px;padding:6px 16px;font-family:'Cairo',sans-serif;font-weight:800;font-size:.74rem;color:var(--ink);cursor:pointer;transition:all .2s;}
+.side-btn:hover{background:var(--orange);color:#fff;border-color:var(--orange);transform:translateY(-2px);}
+.side-btn.special{background:var(--grad-red);color:#fff;border-color:transparent;}
+.side-btn.special:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(201,52,31,.3);}
+.game-desc{margin-top:14px;padding:13px 18px;background:var(--soft);border-radius:var(--r-md);border:1px solid var(--line);color:var(--ink-soft);font-size:.85rem;line-height:1.7;}
+.game-desc strong{color:var(--orange);font-weight:800;}
+
+/* ===== Buttons ===== */
+.btn{display:block;width:100%;border:none;cursor:pointer;font-family:'Cairo',sans-serif;font-weight:800;font-size:1rem;color:#fff;padding:14px 20px;border-radius:40px;background:var(--grad-btn);box-shadow:var(--sh-btn);transition:transform .15s,filter .2s;margin-top:14px;}
+.btn:hover{transform:translateY(-2px);filter:brightness(1.04);}
+.btn:active{transform:translateY(0);}
+.btn:focus-visible{outline:3px solid var(--ink);outline-offset:3px;}
+.btn.create{background:var(--grad-red);box-shadow:0 9px 24px rgba(201,52,31,.3);}
+.btn.ghost{background:#fff;color:var(--orange);border:2px solid var(--orange);box-shadow:none;}
+.btn.ghost:hover{background:#fef8f3;}
+.btn.sm{font-size:.85rem;padding:9px 16px;margin-top:0;}
+.btn:disabled{opacity:.5;pointer-events:none;}
+.btn.locked{background:#A79B90;box-shadow:none;cursor:not-allowed;}
+.back-link{background:none;border:none;color:var(--ink-soft);font-family:inherit;font-weight:700;font-size:.85rem;cursor:pointer;padding:4px 2px;margin-bottom:6px;}
+.back-link:hover{color:var(--orange);}
+.err{color:var(--red);font-size:.8rem;font-weight:700;min-height:1.1em;margin-top:8px;text-align:center;}
+
+/* ===== Inputs / team setup ===== */
+.field label{display:block;margin-bottom:5px;font-weight:700;color:var(--ink);font-size:.85rem;}
+.field input{width:100%;padding:11px 14px;border-radius:var(--r-sm);border:2px solid var(--line);background:var(--soft);color:var(--ink);font-size:.95rem;font-family:inherit;font-weight:600;transition:border-color .2s,box-shadow .2s;}
+.field input:focus{outline:none;border-color:var(--orange);box-shadow:0 0 0 4px rgba(238,108,45,.12);}
+.teams-setup{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:4px 0;}
+.team-col{background:var(--soft);border:2px solid var(--line);border-radius:var(--r-md);padding:13px;}
+.team-col.tc0{border-color:rgba(238,108,45,.4);}
+.team-col.tc1{border-color:rgba(46,156,202,.4);}
+.team-col h3{font-family:'Cairo',sans-serif;font-size:.98rem;margin-bottom:9px;text-align:center;}
+.team-col.tc0 h3{color:var(--t0);} .team-col.tc1 h3{color:var(--t1);}
+.hsel-title{text-align:center;font-weight:700;font-size:.74rem;color:var(--ink-soft);margin:9px 0 6px;}
+.hsel-title b{color:var(--orange);}
+.hsel{display:flex;flex-wrap:wrap;gap:5px;justify-content:center;}
+.hchip{border:2px solid var(--line);border-radius:var(--r-sm);padding:5px 7px;font-size:.66rem;font-weight:700;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:2px;min-width:50px;background:#fff;transition:all .15s;color:var(--ink);text-align:center;}
+.hchip .he{font-size:1.05rem;}
+.hchip:hover{transform:translateY(-2px);border-color:#dcd2c8;}
+.hchip.on{border-color:var(--orange);background:#fef5ee;box-shadow:0 3px 10px rgba(238,108,45,.15);}
+
+/* ===== Category picker ===== */
+.pick-bar{display:flex;align-items:center;gap:8px;justify-content:space-between;background:var(--soft);border:2px solid var(--line);border-radius:var(--r-md);padding:8px 14px;margin-bottom:14px;flex-wrap:wrap;}
+.pick-count{font-family:'Cairo',sans-serif;font-weight:800;font-size:.92rem;}
+.pick-count b{color:var(--orange);}
+.pick-actions{display:flex;gap:6px;}
+.sec{background:var(--soft);border-radius:var(--r-md);padding:12px;margin-bottom:11px;border:1px solid var(--line);}
+.sec-label-wrap{text-align:center;margin-bottom:10px;}
+.sec-label{display:inline-block;background:var(--grad-btn);color:#fff;padding:4px 18px;border-radius:30px;font-family:'Cairo',sans-serif;font-weight:800;font-size:.8rem;box-shadow:0 4px 12px rgba(232,84,42,.22);}
+.cat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(98px,1fr));gap:10px;}
+.pick{cursor:pointer;border-radius:var(--r-md);overflow:hidden;border:3px solid #ece3da;background:#fff;transition:transform .14s,border-color .2s,box-shadow .2s;position:relative;box-shadow:var(--sh-sm);}
+.pick .ic{height:80px;display:flex;align-items:center;justify-content:center;
+    background:linear-gradient(160deg,rgba(255,255,255,.86),rgba(255,255,255,.74)),var(--c,#ddd);}
+.pick .ic .emoji{font-size:2.4rem;filter:drop-shadow(0 3px 5px rgba(0,0,0,.16));}
+.pick .ibadge{position:absolute;top:5px;left:5px;width:17px;height:17px;border-radius:50%;background:#1E8BD6;color:#fff;font-family:'Cairo',sans-serif;font-weight:900;font-size:.62rem;font-style:italic;display:flex;align-items:center;justify-content:center;border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.2);}
+.pick .nm{padding:6px 4px;text-align:center;font-family:'Cairo',sans-serif;font-weight:800;font-size:.74rem;color:#fff;background:var(--orange);}
+.pick:hover{transform:translateY(-3px);box-shadow:0 8px 18px rgba(60,40,25,.12);}
+.pick.sel{border-color:var(--green);box-shadow:0 8px 18px rgba(39,174,96,.26);}
+.pick.sel::after{content:'✓';position:absolute;top:5px;right:5px;width:20px;height:20px;border-radius:50%;background:var(--green);color:#fff;font-weight:900;display:flex;align-items:center;justify-content:center;font-size:.68rem;border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.2);}
+
+/* ===== Board ===== */
+.scoreboard{display:flex;align-items:stretch;gap:9px;margin-bottom:11px;}
+.ts{flex:1;background:var(--soft);border:2px solid var(--line);border-radius:var(--r-md);padding:9px 6px;text-align:center;transition:all .25s;}
+.ts .ts-name{font-family:'Cairo',sans-serif;font-weight:800;font-size:.9rem;margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.ts .ts-pts{font-family:'Cairo',sans-serif;font-weight:900;font-size:1.7rem;line-height:1;}
+.ts.t0 .ts-pts{color:var(--t0);} .ts.t1 .ts-pts{color:var(--t1);}
+.ts.t0.turn{border-color:var(--t0);box-shadow:0 5px 16px rgba(238,108,45,.22);transform:translateY(-2px);}
+.ts.t1.turn{border-color:var(--t1);box-shadow:0 5px 16px rgba(46,156,202,.22);transform:translateY(-2px);}
+.vs{display:flex;align-items:center;justify-content:center;font-family:'Cairo',sans-serif;font-weight:900;color:#cbbfb4;font-size:.9rem;}
+.turn-banner{text-align:center;font-family:'Cairo',sans-serif;font-weight:800;font-size:.92rem;padding:8px;border-radius:var(--r-sm);margin-bottom:12px;color:#fff;}
+.turn-banner.b0{background:var(--grad-btn);} .turn-banner.b1{background:var(--grad-blue);}
+.board{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+@media (min-width:620px){.board{grid-template-columns:repeat(3,1fr);}}
+.cat{border:1px solid var(--line);border-radius:var(--r-md);overflow:hidden;background:#fff;box-shadow:var(--sh-sm);display:flex;flex-direction:column;}
+.cat-head{padding:11px 6px 9px;font-family:'Cairo',sans-serif;font-weight:800;font-size:.86rem;color:#fff;
+    background:linear-gradient(160deg,rgba(255,255,255,.18),rgba(0,0,0,.07)),var(--c);
+    display:flex;flex-direction:column;align-items:center;gap:3px;text-align:center;line-height:1.15;text-shadow:0 1px 3px rgba(0,0,0,.2);}
+.cat-head>span{font-size:1.5rem;line-height:1;filter:drop-shadow(0 2px 3px rgba(0,0,0,.18));}
+.cells{display:grid;grid-template-columns:1fr 1fr;gap:6px;padding:7px;}
+.cell{border:2px solid var(--line);background:var(--soft);color:var(--ink);border-radius:10px;padding:14px 4px;font-family:'Cairo',sans-serif;font-weight:900;font-size:.98rem;cursor:pointer;transition:transform .12s,background .2s,border-color .2s,color .2s,box-shadow .2s;}
+.cell:hover:not(.used){transform:translateY(-2px);background:var(--c);border-color:var(--c);color:#fff;box-shadow:0 5px 14px rgba(0,0,0,.12);}
+.cell.used{background:#f1ece6;color:#cfc7bd;border-color:#ebe3d9;cursor:default;}
+@media (max-width:560px){.teams-setup{grid-template-columns:1fr;}.login-input{min-width:110px;max-width:100%;}}
+
+/* ===== Question ===== */
+.q-meta{display:flex;justify-content:space-between;align-items:center;gap:6px;margin-bottom:12px;flex-wrap:wrap;}
+.q-team{font-family:'Cairo',sans-serif;font-weight:800;font-size:.88rem;padding:5px 12px;border-radius:30px;color:#fff;}
+.q-team.q0{background:var(--grad-btn);} .q-team.q1{background:var(--grad-blue);}
+.q-value{font-family:'Cairo',sans-serif;font-weight:900;color:var(--ink);font-size:.88rem;}
+.q-value b{color:var(--orange);}
+.hud-timer{display:inline-flex;align-items:baseline;gap:2px;justify-content:center;background:var(--grad-btn);color:#fff;border-radius:var(--r-sm);padding:5px 14px;font-family:'Cairo',sans-serif;font-weight:900;font-size:1.05rem;box-shadow:0 5px 14px rgba(232,84,42,.26);transition:background .3s;}
+.hud-timer.low{background:linear-gradient(90deg,#bf2a18,#e0402c);animation:pulse .6s infinite alternate;}
+.hud-timer .u{font-size:.55rem;font-weight:700;opacity:.9;}
+@keyframes pulse{from{transform:scale(1);}to{transform:scale(1.06);}}
+.question-box{background:var(--soft);border:1px solid var(--line);border-radius:var(--r-md);padding:20px 18px;font-family:'Cairo',sans-serif;font-weight:700;font-size:1.16rem;line-height:1.6;text-align:center;color:var(--ink);min-height:78px;display:flex;align-items:center;justify-content:center;margin-bottom:8px;}
+.q-note{text-align:center;font-weight:800;margin-bottom:6px;min-height:1.2em;font-family:'Cairo',sans-serif;color:var(--ink-soft);font-size:.85rem;}
+.q-note.good{color:var(--green);} .q-note.bad{color:var(--red);} .q-note.info{color:var(--t1);}
+.timer-track{height:6px;background:#ece3da;border-radius:20px;overflow:hidden;margin-bottom:14px;}
+.timer-fill{height:100%;width:100%;background:var(--grad-btn);border-radius:20px;transition:width 1s linear,background .3s;}
+.timer-fill.low{background:linear-gradient(90deg,#bf2a18,#e0402c);}
+.options-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:12px;}
+/* الخيارات تبقى عمودين (يمين ويسار) على كل الشاشات */
+.option-btn{background:var(--soft);border:2px solid transparent;color:var(--ink);padding:13px;font-size:.96rem;font-weight:700;font-family:inherit;border-radius:var(--r-sm);cursor:pointer;text-align:right;display:flex;align-items:center;gap:9px;transition:transform .12s,background .2s,border-color .2s,box-shadow .2s,opacity .2s;}
+.option-btn .tag{flex:0 0 auto;width:26px;height:26px;border-radius:8px;background:#fff;color:var(--orange);font-family:'Cairo',sans-serif;font-weight:900;display:flex;align-items:center;justify-content:center;font-size:.78rem;border:1px solid var(--line);transition:background .2s,color .2s;}
+.option-btn:hover:not(:disabled){background:#f3ece4;border-color:var(--orange);transform:translateY(-2px);}
+.option-btn:hover:not(:disabled) .tag{background:var(--orange);color:#fff;border-color:var(--orange);}
+.option-btn:disabled{cursor:default;}
+.option-btn.correct{background:var(--green)!important;border-color:var(--green-d)!important;color:#fff!important;box-shadow:0 5px 16px rgba(39,174,96,.3);}
+.option-btn.correct .tag{background:#fff;color:var(--green-d);}
+.option-btn.wrong{background:var(--wrong)!important;border-color:#a82e1d!important;color:#fff!important;}
+.option-btn.wrong .tag{background:#fff;color:var(--wrong);}
+.option-btn.dim{opacity:.4;}
+.helpers{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;}
+.help-btn{background:#fff;border:2px solid var(--line);border-radius:var(--r-sm);padding:6px 10px;font-family:'Tajawal',sans-serif;font-weight:700;font-size:.78rem;color:var(--ink);cursor:pointer;transition:all .15s;display:flex;align-items:center;gap:4px;}
+.help-btn .he{font-size:.95rem;}
+.help-btn:hover:not(:disabled){border-color:var(--hc,var(--orange));background:var(--soft);transform:translateY(-2px);}
+.help-btn:disabled{opacity:.4;cursor:default;}
+
+/* ===== Result ===== */
+.result-screen{text-align:center;}
+.trophy-ring{width:96px;height:96px;margin:4px auto 6px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+    background:radial-gradient(circle,rgba(244,160,36,.22),transparent 70%);font-size:3rem;}
+.winner-name{font-family:'Cairo',sans-serif;font-weight:900;font-size:1.7rem;margin:2px 0 6px;background:var(--grad-btn);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+.final-scores{display:flex;justify-content:center;gap:10px;margin:14px 0 6px;}
+.fs{flex:1;max-width:170px;background:var(--soft);border:2px solid var(--line);border-radius:var(--r-md);padding:12px;}
+.fs .fs-name{font-family:'Cairo',sans-serif;font-weight:800;font-size:.9rem;margin-bottom:2px;}
+.fs.f0 .fs-pts{color:var(--t0);} .fs.f1 .fs-pts{color:var(--t1);}
+.fs .fs-pts{font-family:'Cairo',sans-serif;font-weight:900;font-size:1.7rem;line-height:1;}
+.fs.win{border-color:var(--orange);box-shadow:0 5px 16px rgba(238,108,45,.22);}
+.footer-note{text-align:center;color:#b9aea3;font-size:.72rem;margin:12px 0 18px;}
+
+/* ===== Register modal ===== */
+.register-modal{display:none;position:fixed;inset:0;background:rgba(43,39,35,.55);z-index:1000;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(3px);}
+.register-modal.show{display:flex;animation:fade .2s ease both;}
+@keyframes fade{from{opacity:0;}to{opacity:1;}}
+.modal-content{background:#fff;border-radius:var(--r-lg);padding:28px 24px;max-width:400px;width:100%;text-align:center;box-shadow:0 24px 60px rgba(0,0,0,.3);animation:rise .3s ease both;}
+.modal-content h3{font-family:'Cairo',sans-serif;font-size:1.3rem;margin-bottom:16px;}
+.modal-content input{width:100%;padding:12px 16px;border-radius:var(--r-sm);border:2px solid var(--line);font-family:inherit;font-size:.95rem;font-weight:600;margin-bottom:10px;background:var(--soft);}
+.modal-content input:focus{outline:none;border-color:var(--orange);box-shadow:0 0 0 4px rgba(238,108,45,.12);}
+.reg-msg{color:var(--red);font-size:.8rem;font-weight:700;min-height:1.2em;}
+.reg-msg.success{color:var(--green);}
+.close-modal{margin-top:10px;background:none;border:none;color:var(--ink-soft);font-size:.9rem;cursor:pointer;font-weight:700;font-family:inherit;}
+.close-modal:hover{color:var(--orange);}
+
+/* ===== Toast ===== */
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(20px);background:var(--ink);color:#fff;
+    padding:11px 22px;border-radius:30px;font-family:'Cairo',sans-serif;font-weight:700;font-size:.88rem;z-index:1200;
+    opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;box-shadow:0 10px 30px rgba(0,0,0,.25);}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;}}
+</style>
+</head>
+<body>
+
+<!-- Hero -->
+<div class="hero-wrap" id="hero-block">
+    <div class="hero">
+        <div class="logo"><span>سين</span><span class="l2">جيم</span></div>
+        <div class="logo-underline"></div>
+        <div class="sub-title">الجواب عليك، و السؤال علينا</div>
+        <div class="badges">
+            <span class="badge">☕ كوفي هاوس</span>
+            <span class="badge">6 فئات · 36 سؤال · 3 وسائل</span>
+        </div>
+    </div>
+</div>
+<div class="mini-bar" id="mini-bar" style="display:none;">
+    <div class="brand-mini">سين جيم<small>كوفي هاوس</small></div>
+    <div class="user-info" id="userInfo">
+        <div class="avatar">👤</div>
+        <span id="userName">ضيف</span>
+        <span class="games-left" id="gamesLeft">🎮 متبقي: <span id="gamesCount">10</span></span>
+        <button class="logout-btn" onclick="logout()">خروج</button>
+    </div>
+</div>
+
+<div class="container">
+
+    <!-- 0) Landing -->
+    <div id="landing-screen" class="screen active">
+        <div class="card landing-card">
+            <div class="greeting">يا هلا فيكم ☕</div>
+            <div class="greeting-sub">سجّل دخولك أو ادخل كضيف عشان تبدأ اللعب</div>
+
+            <div class="login-section" id="loginSection">
+                <div class="login-row">
+                    <input class="login-input" type="text" id="loginName" placeholder="اسم المستخدم" maxlength="20" />
+                    <input class="login-input" type="password" id="loginPass" placeholder="كلمة المرور" maxlength="20" />
+                </div>
+                <div class="login-row">
+                    <button class="login-btn" onclick="login()">دخول</button>
+                    <button class="guest-btn" onclick="loginGuest()">دخول كضيف</button>
+                </div>
+                <div><span class="register-link" onclick="showRegister()">＋ إنشاء حساب جديد</span></div>
+                <div class="login-msg" id="loginMsg"></div>
+            </div>
+
+            <div class="features-row">
+                <span class="feat">📚 <strong>6</strong> فئات</span>
+                <span class="feat">📝 <strong>36</strong> سؤال</span>
+                <span class="feat">🛠️ <strong>3</strong> وسائل لكل فريق</span>
+                <span class="feat">🎯 <strong>10</strong> مباريات يومياً</span>
+            </div>
+
+            <div class="side-buttons">
+                <button class="side-btn" onclick="soon()">📋 إرشادات لعبية</button>
+                <button class="side-btn" onclick="soon()">🏆 إرشادات بطولة</button>
+                <button class="side-btn special" onclick="soon()">🌙 رمضانيات</button>
+                <button class="side-btn" onclick="soon()">🎮 ألعاب</button>
+                <button class="side-btn" onclick="soon()">🌍 كأس العالم</button>
+            </div>
+
+            <button class="btn create" id="playBtn" onclick="checkAndStart()">＋ إنشاء لعبة</button>
+
+            <div class="game-desc">
+                <strong>سين جيم</strong> — لعبة أسئلة جماعية بأكثر من ١٥ فئة منوّعة، أسئلة للكبار والطلبة، ووسائل مساعدة تزيد الحماس.
+            </div>
+        </div>
+    </div>
+
+    <!-- 1) Setup -->
+    <div id="setup-screen" class="screen">
+        <button class="back-link" onclick="go('landing-screen')">‹ رجوع</button>
+        <div class="card">
+            <h2 class="section-title">حدّد معلومات الفرق</h2>
+            <p class="section-sub">اكتبوا أسماء الفريقين، وكل فريق يختار ٣ وسائل مساعدة.</p>
+            <div class="teams-setup">
+                <div class="team-col tc0">
+                    <h3>الفريق الأول</h3>
+                    <div class="field"><input type="text" id="team0" placeholder="اسم الفريق الأول" maxlength="18" autocomplete="off" /></div>
+                    <div class="hsel-title">اختر ٣ وسائل (<b id="cnt0">0</b>/3)</div>
+                    <div class="hsel" id="hsel0"></div>
+                </div>
+                <div class="team-col tc1">
+                    <h3>الفريق الثاني</h3>
+                    <div class="field"><input type="text" id="team1" placeholder="اسم الفريق الثاني" maxlength="18" autocomplete="off" /></div>
+                    <div class="hsel-title">اختر ٣ وسائل (<b id="cnt1">0</b>/3)</div>
+                    <div class="hsel" id="hsel1"></div>
+                </div>
+            </div>
+            <div class="err" id="setup-err"></div>
+            <button class="btn" onclick="goToCategories()">التالي: اختر الفئات ›</button>
+        </div>
+    </div>
+
+    <!-- 2) Category picker -->
+    <div id="category-screen" class="screen">
+        <button class="back-link" onclick="go('setup-screen')">‹ رجوع</button>
+        <div class="card">
+            <h2 class="section-title">اختر الفئات</h2>
+            <p class="section-sub">اختاروا ٦ فئات للوحة اللعب. كل فئة فيها ٦ أسئلة بقيم من ١٠٠ إلى ٦٠٠.</p>
+            <div class="pick-bar">
+                <div class="pick-count">المختارة: <b id="pick-count">0</b> / 6</div>
+                <div class="pick-actions">
+                    <button class="btn ghost sm" onclick="randomCats()">🎲 عشوائي</button>
+                    <button class="btn sm" id="start-btn" onclick="startBoard()" disabled>ابدأ اللعب</button>
+                </div>
+            </div>
+            <div id="cat-sections"></div>
+        </div>
+    </div>
+
+    <!-- 3) Board -->
+    <div id="board-screen" class="screen">
+        <div class="card">
+            <div class="scoreboard" id="scoreboard"></div>
+            <div class="turn-banner" id="turn-banner"></div>
+            <div class="board" id="board"></div>
+        </div>
+    </div>
+
+    <!-- 4) Question -->
+    <div id="question-screen" class="screen">
+        <div class="card">
+            <div class="q-meta">
+                <div class="q-team" id="q-team"></div>
+                <div class="hud-timer" id="hud-timer"><span id="timer-count">30</span><span class="u">ث</span></div>
+                <div class="q-value">على المحك: <b id="q-value">0</b></div>
+            </div>
+            <div class="question-box" id="question-text"></div>
+            <div class="q-note" id="q-note"></div>
+            <div class="timer-track"><div class="timer-fill" id="timer-fill"></div></div>
+            <div class="options-grid" id="options-container"></div>
+            <div class="helpers" id="helpers-bar"></div>
+        </div>
+    </div>
+
+    <!-- 5) Result -->
+    <div id="result-screen" class="screen result-screen">
+        <div class="card">
+            <div class="trophy-ring" id="result-emoji">🏆</div>
+            <div class="winner-name" id="winner-name"></div>
+            <div class="final-scores" id="final-scores"></div>
+            <button class="btn" onclick="rematch()">العبوا مرة ثانية</button>
+            <button class="btn ghost" onclick="go('landing-screen')">من البداية</button>
+        </div>
+    </div>
+
+    <p class="footer-note">سين جيم — كوفي هاوس · نسخة للتسلية</p>
+</div>
+
+<!-- Register Modal -->
+<div class="register-modal" id="registerModal">
+    <div class="modal-content">
+        <h3>📝 إنشاء حساب جديد</h3>
+        <input type="text" id="regName" placeholder="اسم المستخدم" maxlength="20" />
+        <input type="password" id="regPass" placeholder="كلمة المرور" maxlength="20" />
+        <input type="password" id="regPassConfirm" placeholder="تأكيد كلمة المرور" maxlength="20" />
+        <div class="reg-msg" id="regMsg"></div>
+        <button class="btn" onclick="register()" style="margin-top:10px;">إنشاء حساب</button>
+        <button class="close-modal" onclick="hideRegister()">إلغاء</button>
+    </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* ============================================================
+   تخزين آمن — يستخدم localStorage عند الاستضافة، ويتحول لذاكرة مؤقتة
+   داخل المعاينة (بدون أخطاء)
+   ============================================================ */
+const _mem = {};
+function lsGet(k){ try{ return localStorage.getItem(k); }catch(e){ return (k in _mem) ? _mem[k] : null; } }
+function lsSet(k,v){ try{ localStorage.setItem(k,v); }catch(e){ _mem[k]=v; } }
+
+/* ============================================================
+   نظام المستخدمين
+   ============================================================ */
+const MAX_GAMES_PER_DAY = 10;
+function getUsers(){ try{ return JSON.parse(lsGet('sirjim_users')) || {}; }catch(e){ return {}; } }
+function saveUsers(u){ lsSet('sirjim_users', JSON.stringify(u)); }
+function getToday(){ return new Date().toDateString(); }
+function getUserData(username){
+    const users=getUsers(); if(!users[username]) return null;
+    const data=users[username];
+    if(data.lastPlayed!==getToday()){ data.gamesToday=0; data.lastPlayed=getToday(); saveUsers(users); }
+    return data;
+}
+function incrementGames(username){
+    const users=getUsers(); if(!users[username]) return false;
+    const today=getToday();
+    if(users[username].lastPlayed!==today){ users[username].gamesToday=0; users[username].lastPlayed=today; }
+    if(users[username].gamesToday>=MAX_GAMES_PER_DAY) return false;
+    users[username].gamesToday++; saveUsers(users); return true;
+}
+function getGamesLeft(username){ const d=getUserData(username); if(!d) return 0; return Math.max(0,MAX_GAMES_PER_DAY-d.gamesToday); }
+
+let currentUser=null;
+
+function login(){
+    const name=document.getElementById('loginName').value.trim();
+    const pass=document.getElementById('loginPass').value.trim();
+    const msg=document.getElementById('loginMsg'); msg.style.color='';
+    if(!name||!pass){ msg.textContent='⚠️ اكتب اسم المستخدم وكلمة المرور'; return; }
+    const users=getUsers();
+    if(!users[name]){ msg.textContent='❌ هذا الحساب غير موجود'; return; }
+    if(users[name].password!==pass){ msg.textContent='❌ كلمة المرور خاطئة'; return; }
+    currentUser=name; msg.style.color='var(--green)'; msg.textContent='✅ تم تسجيل الدخول!';
+    afterLogin();
+}
+function loginGuest(){ currentUser='ضيف'; document.getElementById('loginMsg').textContent=''; afterLogin(); }
+
+function register(){
+    const name=document.getElementById('regName').value.trim();
+    const pass=document.getElementById('regPass').value.trim();
+    const confirm=document.getElementById('regPassConfirm').value.trim();
+    const msg=document.getElementById('regMsg'); msg.className='reg-msg';
+    if(!name||name.length<2){ msg.textContent='⚠️ الاسم لازم حرفين على الأقل'; return; }
+    if(!pass||pass.length<3){ msg.textContent='⚠️ كلمة المرور لازم ٣ أحرف على الأقل'; return; }
+    if(pass!==confirm){ msg.textContent='⚠️ كلمتا المرور غير متطابقتين'; return; }
+    const users=getUsers();
+    if(users[name]){ msg.textContent='❌ هذا الاسم مستخدم بالفعل'; return; }
+    users[name]={ password:pass, gamesToday:0, lastPlayed:getToday() };
+    saveUsers(users);
+    msg.className='reg-msg success'; msg.textContent='✅ تم إنشاء الحساب!';
+    setTimeout(()=>{
+        hideRegister();
+        document.getElementById('loginName').value=name;
+        document.getElementById('loginPass').value=pass;
+        const lm=document.getElementById('loginMsg'); lm.style.color='var(--green)'; lm.textContent='✅ سجّل دخولك الآن';
+    },900);
+}
+function showRegister(){ const m=document.getElementById('registerModal'); m.classList.add('show'); document.getElementById('regMsg').textContent=''; document.getElementById('regMsg').className='reg-msg'; }
+function hideRegister(){ document.getElementById('registerModal').classList.remove('show'); }
+
+function afterLogin(){
+    document.getElementById('hero-block').style.display='none';
+    document.getElementById('mini-bar').style.display='flex';
+    document.getElementById('loginSection').style.display='none';
+    document.getElementById('userName').textContent=currentUser;
+    document.querySelector('.register-link').style.display='none';
+    updateGamesDisplay();
+    enablePlayButton();
+    switchScreen('landing-screen');
+}
+function updateGamesDisplay(){
+    const left = currentUser==='ضيف' ? '♾️' : getGamesLeft(currentUser);
+    document.getElementById('gamesCount').textContent = left;
+}
+function enablePlayButton(){
+    const btn=document.getElementById('playBtn');
+    if(currentUser==='ضيف'){ btn.disabled=false; btn.textContent='＋ إنشاء لعبة'; btn.className='btn create'; return; }
+    const left=getGamesLeft(currentUser);
+    if(left<=0){ btn.disabled=true; btn.textContent='⛔ انتهت مباريات اليوم (10/10)'; btn.className='btn create locked'; }
+    else { btn.disabled=false; btn.textContent='＋ إنشاء لعبة ('+left+' متبقي)'; btn.className='btn create'; }
+}
+function checkAndStart(){
+    if(currentUser===null){ toast('سجّل دخولك أو ادخل كضيف أول 🙂'); return; }
+    if(currentUser==='ضيف'){ go('setup-screen'); return; }
+    if(getGamesLeft(currentUser)<=0){ toast('⛔ خلصت مبارياتك اليوم (10/10)'); return; }
+    go('setup-screen');
+}
+function logout(){
+    currentUser=null;
+    document.getElementById('hero-block').style.display='block';
+    document.getElementById('mini-bar').style.display='none';
+    document.getElementById('loginSection').style.display='flex';
+    document.querySelector('.register-link').style.display='inline';
+    document.getElementById('loginMsg').textContent='';
+    document.getElementById('loginName').value='';
+    document.getElementById('loginPass').value='';
+    const btn=document.getElementById('playBtn'); btn.disabled=false; btn.textContent='＋ إنشاء لعبة'; btn.className='btn create';
+    go('landing-screen');
+}
+
+/* ============================================================
+   محرك اللعبة
+   ============================================================ */
+const HELPERS={
+    trap:{name:"الفخ",emoji:"💣",color:"#E0A92E",desc:"حوّل السؤال للفريق الثاني، وإذا غلط ينخصم منه"},
+    rest:{name:"استريح",emoji:"✋",color:"#E8412E",desc:"تخطّى السؤال بدون خسارة ولا نقاط"},
+    double:{name:"جاوب جوابين",emoji:"✌️",color:"#3FA9D6",desc:"محاولتين، وحدة لازم تكون صح"},
+    dig:{name:"الحفرة",emoji:"🔻",color:"#8B5E3C",desc:"إذا جاوبت صح، يُخصم نفس المبلغ من الفريق الثاني"},
+    call:{name:"اتصل بصديق",emoji:"📞",color:"#2BB24C",desc:"يزيد لك ٢٥ ثانية وقت"},
+};
+const HELP_ORDER=["trap","rest","double","dig","call"];
+
+const CATEGORIES=[
+/*0*/ {name:"معلومات عامة",icon:"📚",color:"#EE6C2D",questions:[
+    {value:100,q:"كم عدد أيام الأسبوع؟",options:["7","6","5","8"],correct:0},
+    {value:200,q:"ما العملة الرسمية لليابان؟",options:["الين","اليوان","الوون","الروبية"],correct:0},
+    {value:300,q:"كم عدد ألوان علم الكويت؟",options:["4","3","5","2"],correct:0},
+    {value:400,q:"ما أكبر كوكب في المجموعة الشمسية؟",options:["المشتري","زحل","الأرض","نبتون"],correct:0},
+    {value:500,q:"كم عدد أرجل الحشرة؟",options:["6","8","4","10"],correct:0},
+    {value:600,q:"ما العضو المسؤول عن حاسة الشم؟",options:["الأنف","الأذن","اللسان","العين"],correct:0},
+]},
+/*1*/ {name:"ثقافة عامة",icon:"🧠",color:"#D4A843",questions:[
+    {value:100,q:"من هو مؤسس علم الجبر؟",options:["الخوارزمي","ابن سينا","جابر بن حيان","الكندي"],correct:0},
+    {value:200,q:"ما هي عاصمة البرازيل؟",options:["برازيليا","ريو دي جانيرو","ساو باولو","بيلو هوريزونتي"],correct:0},
+    {value:300,q:"من أول من اخترع الورق؟",options:["الصينيون","المصريون","اليونانيون","الرومان"],correct:0},
+    {value:400,q:"كم عدد سور القرآن الكريم؟",options:["114","110","120","100"],correct:0},
+    {value:500,q:"من هو الشاعر الملقّب بـ «شاعر النيل»؟",options:["حافظ إبراهيم","أحمد شوقي","محمود سامي البارودي","إيليا أبو ماضي"],correct:0},
+    {value:600,q:"ما هي أكبر مكتبة في العالم؟",options:["مكتبة الكونغرس","المكتبة البريطانية","مكتبة الإسكندرية","مكتبة هارفارد"],correct:0},
+]},
+/*2*/ {name:"تاريخ",icon:"🏛️",color:"#8E44AD",questions:[
+    {value:100,q:"في أي سنة بدأت الحرب العالمية الأولى؟",options:["1914","1939","1918","1900"],correct:0},
+    {value:200,q:"من أول إنسان مشى على سطح القمر؟",options:["نيل أرمسترونغ","يوري غاغارين","باز ألدرين","جون غلين"],correct:0},
+    {value:300,q:"ما أقدم حضارة عُرفت في بلاد الرافدين؟",options:["السومرية","الفرعونية","الرومانية","اليونانية"],correct:0},
+    {value:400,q:"في أي عام استقلت دولة الكويت؟",options:["1961","1971","1951","1945"],correct:0},
+    {value:500,q:"من بنى الأهرامات في مصر؟",options:["قدماء المصريين","الرومان","الإغريق","الفينيقيون"],correct:0},
+    {value:600,q:"في أي قرن بدأت الثورة الصناعية؟",options:["القرن الثامن عشر","القرن العشرون","القرن السادس عشر","القرن الحادي عشر"],correct:0},
+]},
+/*3*/ {name:"علوم",icon:"🔬",color:"#27AE60",questions:[
+    {value:100,q:"ما الغاز الذي يحتاجه الإنسان للتنفس؟",options:["الأكسجين","الهيدروجين","النيتروجين","الهيليوم"],correct:0},
+    {value:200,q:"كم عدد كواكب المجموعة الشمسية؟",options:["8","9","7","10"],correct:0},
+    {value:300,q:"ما المعدن الذي يكون سائلاً في درجة حرارة الغرفة؟",options:["الزئبق","الحديد","الذهب","النحاس"],correct:0},
+    {value:400,q:"ما العضو المسؤول عن ضخ الدم في الجسم؟",options:["القلب","الكبد","الرئة","الكلية"],correct:0},
+    {value:500,q:"ما سرعة الضوء تقريباً في الفراغ؟",options:["300,000 كم/ث","150,000 كم/ث","1,000 كم/ث","300 كم/ث"],correct:0},
+    {value:600,q:"ما العنصر الأكثر وفرة في الكون؟",options:["الهيدروجين","الأكسجين","الكربون","الحديد"],correct:0},
+]},
+/*4*/ {name:"جغرافيا",icon:"🗺️",color:"#2E9CCA",questions:[
+    {value:100,q:"ما عاصمة دولة الكويت؟",options:["مدينة الكويت","حولي","الجهراء","الأحمدي"],correct:0},
+    {value:200,q:"ما أكبر دولة عربية من حيث المساحة؟",options:["الجزائر","السعودية","مصر","السودان"],correct:0},
+    {value:300,q:"في أي قارة تقع البرازيل؟",options:["أمريكا الجنوبية","أفريقيا","آسيا","أوروبا"],correct:0},
+    {value:400,q:"ما أصغر قارة في العالم مساحة؟",options:["أستراليا","أوروبا","أنتاركتيكا","آسيا"],correct:0},
+    {value:500,q:"ما عاصمة اليابان؟",options:["طوكيو","أوساكا","كيوتو","سيول"],correct:0},
+    {value:600,q:"ما أطول سلسلة جبال على سطح الأرض؟",options:["جبال الأنديز","الهيمالايا","جبال الألب","جبال روكي"],correct:0},
+]},
+/*5*/ {name:"رياضة",icon:"⚽",color:"#E74C3C",questions:[
+    {value:100,q:"كم عدد أشواط مباراة كرة القدم الأساسية؟",options:["شوطان","ثلاثة","أربعة","واحد"],correct:0},
+    {value:200,q:"كل كم سنة تُقام بطولة كأس العالم لكرة القدم؟",options:["4 سنوات","سنتان","3 سنوات","5 سنوات"],correct:0},
+    {value:300,q:"كم عدد لاعبي فريق كرة السلة داخل الملعب؟",options:["5","6","7","4"],correct:0},
+    {value:400,q:"في أي رياضة يُستخدم مصطلح «سلام دانك»؟",options:["كرة السلة","كرة القدم","التنس","الكرة الطائرة"],correct:0},
+    {value:500,q:"ما الدولة الأكثر تتويجاً بكأس العالم لكرة القدم؟",options:["البرازيل","ألمانيا","إيطاليا","الأرجنتين"],correct:0},
+    {value:600,q:"كم عدد الحلقات في شعار الألعاب الأولمبية؟",options:["5","4","6","3"],correct:0},
+]},
+/*6*/ {name:"أفلام",icon:"🎬",color:"#F39C12",questions:[
+    {value:100,q:"فيلم «العرّاب» من إخراج؟",options:["فرانسيس فورد كوبولا","مارتن سكورسيزي","ستيفن سبيلبرغ","كوينتن تارانتينو"],correct:0},
+    {value:200,q:"ما اسم البطل في سلسلة أفلام «جون ويك»؟",options:["جون ويك","جون ماكلين","جيسون بورن","جيمس بوند"],correct:0},
+    {value:300,q:"في أي فيلم اشتهرت عبارة «I'll be back»؟",options:["The Terminator","RoboCop","Predator","Iron Man"],correct:0},
+    {value:400,q:"من مخرج فيلم «Inception»؟",options:["كريستوفر نولان","ديفيد فينشر","دينيس فيلنوف","جيمس كاميرون"],correct:0},
+    {value:500,q:"من بطل فيلم «Forrest Gump»؟",options:["توم هانكس","براد بيت","ليوناردو ديكابريو","دينزل واشنطن"],correct:0},
+    {value:600,q:"من بطولة سلسلة أفلام «Die Hard»؟",options:["بروس ويليس","آرنولد شوارزنيجر","سيلفستر ستالون","تشاك نوريس"],correct:0},
+]},
+/*7*/ {name:"مسلسلات",icon:"📺",color:"#3498DB",questions:[
+    {value:100,q:"في أي مسلسل ظهرت شخصية «والتر وايت»؟",options:["Breaking Bad","Peaky Blinders","Dexter","Homeland"],correct:0},
+    {value:200,q:"مسلسل «Game of Thrones» مبني على روايات؟",options:["جورج ر. ر. مارتن","جيه. آر. آر. تولكين","براندون ساندرسون","باتريك روثفوس"],correct:0},
+    {value:300,q:"من بطل النسخة الأمريكية من «The Office»؟",options:["ستيف كاريل","ريكي جيرفيه","جون كراسينسكي","رين ويلسون"],correct:0},
+    {value:400,q:"مسلسل «Sherlock» من بطولة؟",options:["بنديكت كمبرباتش","روبرت داوني جونيور","جوني لي ميلر","مارتن فريمان"],correct:0},
+    {value:500,q:"في مسلسل «Friends»، في أي مجال تعمل راشيل؟",options:["الموضة","الطب","المحاماة","الصحافة"],correct:0},
+    {value:600,q:"من مبتكر مسلسل «Vikings»؟",options:["مايكل هيرست","ديفيد تشيس","فينس جيليجان","شون رايان"],correct:0},
+]},
+/*8*/ {name:"ألعاب فيديو",icon:"🎮",color:"#9B59B6",questions:[
+    {value:100,q:"من بطل لعبة «Super Mario»؟",options:["ماريو","لويجي","سونيك","كراش"],correct:0},
+    {value:200,q:"في أي لعبة تظهر شخصية «Master Chief»؟",options:["Halo","Call of Duty","Gears of War","Fortnite"],correct:0},
+    {value:300,q:"ما الشركة المصنّعة لجهاز «بلايستيشن»؟",options:["سوني","مايكروسوفت","نينتندو","سيجا"],correct:0},
+    {value:400,q:"لعبة «Minecraft» من تطوير؟",options:["Mojang","EA","Ubisoft","Valve"],correct:0},
+    {value:500,q:"في أي لعبة تظهر شخصية «Lara Croft»؟",options:["Tomb Raider","Uncharted","The Last of Us","Horizon"],correct:0},
+    {value:600,q:"ما هي اللعبة الأكثر مبيعاً على الإطلاق؟",options:["Minecraft","GTA V","Tetris","PUBG"],correct:0},
+]},
+/*9*/ {name:"كرة قدم",icon:"🏆",color:"#1ABC9C",questions:[
+    {value:100,q:"من الفائز بكأس العالم 2022؟",options:["الأرجنتين","فرنسا","البرازيل","إنجلترا"],correct:0},
+    {value:200,q:"من الهداف التاريخي لدوري أبطال أوروبا؟",options:["كريستيانو رونالدو","ليونيل ميسي","روبرت ليفاندوفسكي","راؤول"],correct:0},
+    {value:300,q:"في أي نادٍ إيطالي تألّق مارادونا؟",options:["نابولي","إنتر ميلان","ميلان","يوفنتوس"],correct:0},
+    {value:400,q:"ما أكبر ملعب كرة قدم في العالم من حيث السعة؟",options:["ملعب رونغرادو","كامب نو","ويمبلي","آزادي"],correct:0},
+    {value:500,q:"كم لاعباً في فريق كرة القدم داخل الملعب؟",options:["11","10","12","9"],correct:0},
+    {value:600,q:"أي منتخب فاز بأول نسخة من كأس العالم 1930؟",options:["الأوروغواي","الأرجنتين","البرازيل","إيطاليا"],correct:0},
+]},
+/*10*/ {name:"سيارات",icon:"🚗",color:"#E74C3C",questions:[
+    {value:100,q:"من أي دولة شركة سيارات «فورد»؟",options:["أمريكا","ألمانيا","اليابان","إيطاليا"],correct:0},
+    {value:200,q:"من أي دولة تأتي سيارات «تويوتا»؟",options:["اليابان","كوريا","الصين","أمريكا"],correct:0},
+    {value:300,q:"من مؤسس شركة «تسلا» الحالي ورئيسها التنفيذي؟",options:["إيلون ماسك","جيف بيزوس","بيل غيتس","مارك زوكربيرغ"],correct:0},
+    {value:400,q:"من أي دولة سيارات «فيراري»؟",options:["إيطاليا","ألمانيا","فرنسا","بريطانيا"],correct:0},
+    {value:500,q:"ما الشركة الألمانية صاحبة شعار النجمة الثلاثية؟",options:["مرسيدس","بي إم دبليو","أودي","بورش"],correct:0},
+    {value:600,q:"ما نوع المحرك في السيارات الكهربائية؟",options:["محرك كهربائي","محرك بنزين","محرك ديزل","محرك بخاري"],correct:0},
+]},
+/*11*/ {name:"ألعاب جماعية",icon:"🎲",color:"#8E44AD",questions:[
+    {value:100,q:"الشطرنج لعبة من أي نوع؟",options:["استراتيجية","حظ","ورق","رياضية"],correct:0},
+    {value:200,q:"كم عدد قطع الشطرنج لكل لاعب في البداية؟",options:["16","12","8","10"],correct:0},
+    {value:300,q:"لعبة «سكرابل» تعتمد على؟",options:["الكلمات","الأرقام","النرد","الرسم"],correct:0},
+    {value:400,q:"كم عدد ألوان أوراق لعبة «أونو» الأساسية؟",options:["4","3","5","6"],correct:0},
+    {value:500,q:"لعبة «الدومينو» تُلعب بـ؟",options:["قطع بلاط منقّطة","أوراق لعب","نرد فقط","كرات"],correct:0},
+    {value:600,q:"في لعبة «مونوبولي»، ما العملة المستخدمة؟",options:["نقود اللعبة الورقية","عملات ذهبية","نقاط رقمية","بطاقات"],correct:0},
+]},
+/*12*/ {name:"طبيعة",icon:"🌿",color:"#2ECC71",questions:[
+    {value:100,q:"ما أكبر حيوان على وجه الأرض؟",options:["الحوت الأزرق","الفيل","الزرافة","القرش الأبيض"],correct:0},
+    {value:200,q:"ما الحيوان الذي يُلقّب بملك الغابة؟",options:["الأسد","النمر","الفهد","الذئب"],correct:0},
+    {value:300,q:"ما أسرع حيوان بري في العالم؟",options:["الفهد","الأسد","الحصان","الغزال"],correct:0},
+    {value:400,q:"ما الحيوان الأطول رقبةً على الأرض؟",options:["الزرافة","الجمل","النعامة","الفيل"],correct:0},
+    {value:500,q:"كم قلباً لدى الأخطبوط؟",options:["3","1","2","4"],correct:0},
+    {value:600,q:"أي طائر لا يطير ويعيش في القطب الجنوبي؟",options:["البطريق","النعامة","الدجاج","البطة"],correct:0},
+]},
+/*13*/ {name:"مطبخ",icon:"🍳",color:"#E67E22",questions:[
+    {value:100,q:"ما المكوّن الأساسي لصناعة الخبز؟",options:["الطحين","الأرز","السكر","البيض"],correct:0},
+    {value:200,q:"من أي ثمرة يُستخرج زيت الزيتون؟",options:["الزيتون","العنب","النخيل","عبّاد الشمس"],correct:0},
+    {value:300,q:"ما المشروب الذي يُصنع من حبوب البُن؟",options:["القهوة","الشاي","الكاكاو","العصير"],correct:0},
+    {value:400,q:"ما الدولة الأصلية لطبق السوشي؟",options:["اليابان","الصين","كوريا","تايلاند"],correct:0},
+    {value:500,q:"ما التوابل التي تُعطي الكاري لونه الأصفر؟",options:["الكركم","الفلفل الأسود","القرفة","الزنجبيل"],correct:0},
+    {value:600,q:"ما الدولة المشهورة بأطباق المعكرونة (الباستا)؟",options:["إيطاليا","فرنسا","إسبانيا","اليونان"],correct:0},
+]},
+/*14*/ {name:"تكنولوجيا",icon:"💻",color:"#2980B9",questions:[
+    {value:100,q:"ما الشركة المطوّرة لنظام تشغيل أندرويد؟",options:["جوجل","آبل","مايكروسوفت","نوكيا"],correct:0},
+    {value:200,q:"ما الشركة المصنّعة لأجهزة آيفون؟",options:["آبل","سامسونج","هواوي","سوني"],correct:0},
+    {value:300,q:"ماذا تعني الأحرف CPU في الحاسوب؟",options:["وحدة المعالجة المركزية","ذاكرة التخزين","بطاقة الشاشة","مزوّد الطاقة"],correct:0},
+    {value:400,q:"ما الشركة المالكة لمنصة يوتيوب؟",options:["جوجل","ميتا","مايكروسوفت","أمازون"],correct:0},
+    {value:500,q:"ما اسم أشهر عملة رقمية في العالم؟",options:["بيتكوين","ريبل","لايتكوين","دوجكوين"],correct:0},
+    {value:600,q:"ماذا يعني الاختصار AI؟",options:["الذكاء الاصطناعي","الإنترنت المتقدم","التطبيق الذكي","الواقع المعزّز"],correct:0},
+]},
+];
+
+const SECTIONS=[
+    {title:"معرفة عامة",   cats:[0,1,2,4]},
+    {title:"علوم وطبيعة",  cats:[3,12,14,13]},
+    {title:"ترفيه ورياضة", cats:[5,9,6,7,8,10,11]},
+];
+
+/* ===== State ===== */
+const MAIN_TIME=30, CALL_BONUS=25;
+let selectedHelpers=[[],[]];
+let teams=[], selectedCats=[], boardCats=[];
+let currentTeam=0, cellsLeft=0, usedCells={};
+let currentQ=null, pickerTeam=0, attemptTeam=0;
+let guessesLeft=1, locked=false, helpersLocked=false;
+let digActive=false, trapActive=false;
+let timerInterval=null, timeLeft=0, timerMax=MAIN_TIME;
+
+/* ===== Utils ===== */
+function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+function fmt(n){return n.toLocaleString('en-US');}
+function go(id){switchScreen(id);}
+function switchScreen(id){
+    document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    const heroVisible=document.getElementById('hero-block').style.display!=='none';
+    document.querySelector('.container').style.marginTop=(id==='landing-screen'&&heroVisible)?'-30px':'18px';
+    window.scrollTo({top:0,behavior:'smooth'});
+}
+function note(txt,kind){const n=document.getElementById('q-note');n.className='q-note'+(kind?(' '+kind):'');n.innerText=txt||'';}
+let _toastT=null;
+function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(_toastT);_toastT=setTimeout(()=>t.classList.remove('show'),2200);}
+function soon(){toast('قريباً 🔜');}
+
+/* ===== Setup: helper chips ===== */
+function renderHelperChips(){
+    [0,1].forEach(t=>{
+        const box=document.getElementById('hsel'+t); box.innerHTML='';
+        HELP_ORDER.forEach(k=>{
+            const h=HELPERS[k];
+            const chip=document.createElement('div');
+            chip.className='hchip'+(selectedHelpers[t].includes(k)?' on':'');
+            chip.innerHTML='<span class="he">'+h.emoji+'</span>'+h.name;
+            chip.title=h.desc; chip.onclick=()=>toggleHelper(t,k);
+            box.appendChild(chip);
+        });
+        document.getElementById('cnt'+t).innerText=selectedHelpers[t].length;
+    });
+}
+function toggleHelper(t,k){
+    const arr=selectedHelpers[t]; const i=arr.indexOf(k);
+    if(i>=0){arr.splice(i,1);} else {if(arr.length>=3){document.getElementById('setup-err').innerText='كل فريق يختار ٣ وسائل بس.';return;} arr.push(k);}
+    document.getElementById('setup-err').innerText=''; renderHelperChips();
+}
+function goToCategories(){
+    let n0=document.getElementById('team0').value.trim()||"الفريق الأول";
+    let n1=document.getElementById('team1').value.trim()||"الفريق الثاني";
+    if(n0===n1) n1=n1+" 2";
+    if(selectedHelpers[0].length!==3||selectedHelpers[1].length!==3){document.getElementById('setup-err').innerText='كل فريق لازم يختار ٣ وسائل مساعدة.';return;}
+    teams=[{name:n0,score:0,helpers:selectedHelpers[0].slice(),used:{}},{name:n1,score:0,helpers:selectedHelpers[1].slice(),used:{}}];
+    selectedCats=[]; renderCategoryPicker(); updatePickBar(); go('category-screen');
+}
+
+/* ===== Category picker ===== */
+function renderCategoryPicker(){
+    const wrap=document.getElementById('cat-sections'); wrap.innerHTML='';
+    SECTIONS.forEach(sec=>{
+        const block=document.createElement('div'); block.className='sec';
+        let cards='';
+        sec.cats.forEach(ci=>{
+            const c=CATEGORIES[ci];
+            cards+='<div class="pick'+(selectedCats.includes(ci)?' sel':'')+'" style="--c:'+c.color+'" data-ci="'+ci+'" onclick="toggleCat('+ci+')">'+
+                '<span class="ibadge">i</span><div class="ic"><span class="emoji">'+c.icon+'</span></div><div class="nm">'+c.name+'</div></div>';
+        });
+        block.innerHTML='<div class="sec-label-wrap"><span class="sec-label">'+sec.title+'</span></div><div class="cat-grid">'+cards+'</div>';
+        wrap.appendChild(block);
+    });
+}
+function toggleCat(ci){
+    const i=selectedCats.indexOf(ci);
+    if(i>=0){selectedCats.splice(i,1);} else {if(selectedCats.length>=6){toast('اخترت ٦ فئات بالفعل');return;} selectedCats.push(ci);}
+    renderCategoryPicker(); updatePickBar();
+}
+function randomCats(){ selectedCats=shuffle(CATEGORIES.map((_,i)=>i)).slice(0,6); renderCategoryPicker(); updatePickBar(); }
+function updatePickBar(){
+    document.getElementById('pick-count').innerText=selectedCats.length;
+    const b=document.getElementById('start-btn'); const ready=selectedCats.length===6;
+    b.disabled=!ready; b.style.opacity=ready?'1':'.5';
+}
+
+/* ===== Board ===== */
+function startBoard(){
+    if(selectedCats.length!==6) return;
+    if(currentUser!=='ضيف'){
+        if(getGamesLeft(currentUser)<=0){ toast('⛔ خلصت مبارياتك اليوم (10/10)'); return; }
+        if(!incrementGames(currentUser)){ toast('⛔ صار خطأ، حاول مرة ثانية'); return; }
+        updateGamesDisplay(); enablePlayButton();
+    }
+    boardCats=selectedCats.slice(); currentTeam=0; usedCells={}; cellsLeft=boardCats.length*6;
+    buildBoard(); renderScoreboard(); go('board-screen');
+}
+function buildBoard(){
+    const board=document.getElementById('board'); board.innerHTML='';
+    boardCats.forEach(ci=>{
+        const cat=CATEGORIES[ci];
+        const block=document.createElement('div'); block.className='cat'; block.style.setProperty('--c',cat.color);
+        let cells='';
+        cat.questions.forEach((qq,qi)=>{
+            const key=ci+'-'+qi, used=usedCells[key];
+            cells+='<button class="cell'+(used?' used':'')+'" '+(used?'disabled':'onclick="pickCell('+ci+','+qi+')"')+'>'+(used?'✓':fmt(qq.value))+'</button>';
+        });
+        block.innerHTML='<div class="cat-head"><span>'+cat.icon+'</span>'+cat.name+'</div><div class="cells">'+cells+'</div>';
+        board.appendChild(block);
+    });
+}
+function renderScoreboard(){
+    document.getElementById('scoreboard').innerHTML=
+        '<div class="ts t0'+(currentTeam===0?' turn':'')+'"><div class="ts-name">'+teams[0].name+'</div><div class="ts-pts">'+fmt(teams[0].score)+'</div></div>'+
+        '<div class="vs">VS</div>'+
+        '<div class="ts t1'+(currentTeam===1?' turn':'')+'"><div class="ts-name">'+teams[1].name+'</div><div class="ts-pts">'+fmt(teams[1].score)+'</div></div>';
+    const tb=document.getElementById('turn-banner');
+    tb.className='turn-banner '+(currentTeam===0?'b0':'b1');
+    tb.innerHTML='الدور على: '+teams[currentTeam].name+' — اختاروا فئة';
+}
+
+/* ===== Pick cell ===== */
+function pickCell(ci,qi){
+    const key=ci+'-'+qi; if(usedCells[key]) return;
+    const base=CATEGORIES[ci].questions[qi];
+    const correctText=base.options[base.correct];
+    const shuffled=shuffle(base.options);
+    currentQ={catKey:key,value:base.value,q:base.q,options:shuffled,correct:shuffled.indexOf(correctText)};
+    pickerTeam=currentTeam; attemptTeam=currentTeam; digActive=false; trapActive=false;
+    startAttempt(); go('question-screen');
+}
+
+/* ===== Attempt ===== */
+function startAttempt(){
+    locked=false; helpersLocked=false; guessesLeft=1;
+    document.getElementById('question-text').innerText=currentQ.q;
+    document.getElementById('q-value').innerText=fmt(currentQ.value);
+    const qTeam=document.getElementById('q-team');
+    qTeam.className='q-team '+(attemptTeam===0?'q0':'q1');
+    qTeam.innerText='يجاوب: '+teams[attemptTeam].name;
+    note(''); renderOptions(); setupHelpers(); startTimer(MAIN_TIME);
+}
+function renderOptions(){
+    const labels=["أ","ب","ج","د"]; const box=document.getElementById('options-container'); box.innerHTML='';
+    currentQ.options.forEach((opt,i)=>{
+        const btn=document.createElement('button'); btn.className='option-btn'; btn.dataset.index=i;
+        btn.innerHTML='<span class="tag">'+labels[i]+'</span><span>'+opt+'</span>';
+        btn.onclick=()=>selectAnswer(i); box.appendChild(btn);
+    });
+}
+
+/* ===== Helpers during question ===== */
+function setupHelpers(){
+    const bar=document.getElementById('helpers-bar'); bar.innerHTML='';
+    if(trapActive||helpersLocked){bar.style.display='none';return;}
+    const avail=teams[attemptTeam].helpers.filter(k=>!teams[attemptTeam].used[k]);
+    if(avail.length===0){bar.style.display='none';return;}
+    bar.style.display='flex';
+    avail.forEach(k=>{
+        const h=HELPERS[k];
+        const btn=document.createElement('button'); btn.className='help-btn'; btn.style.setProperty('--hc',h.color);
+        btn.innerHTML='<span class="he">'+h.emoji+'</span> '+h.name; btn.title=h.desc;
+        btn.onclick=()=>useHelper(k); bar.appendChild(btn);
+    });
+}
+function useHelper(k){
+    if(locked||trapActive||helpersLocked) return;
+    const t=attemptTeam; if(teams[t].used[k]) return;
+    teams[t].used[k]=true;
+    if(k==='double'){guessesLeft=2;note('✌️ جاوب جوابين: عندك محاولتين','');setupHelpers();}
+    else if(k==='call'){timerMax+=CALL_BONUS;timeLeft+=CALL_BONUS;updateTimerUI();note('📞 اتصل بصديق: +'+CALL_BONUS+' ثانية','');setupHelpers();}
+    else if(k==='dig'){digActive=true;note('🔻 الحفرة: إذا جاوبتوا صح ينخصم من الفريق الثاني','info');setupHelpers();}
+    else if(k==='rest'){skipQuestion();}
+    else if(k==='trap'){activateTrap();}
+}
+function activateTrap(){
+    clearInterval(timerInterval);
+    trapActive=true; attemptTeam=1-pickerTeam; locked=false; helpersLocked=false; guessesLeft=1; digActive=false;
+    const qTeam=document.getElementById('q-team');
+    qTeam.className='q-team '+(attemptTeam===0?'q0':'q1');
+    qTeam.innerText='يجاوب: '+teams[attemptTeam].name;
+    note('💣 انحطّ فخ! لازم '+teams[attemptTeam].name+' يجاوب — وإذا غلط ينخصم منه','bad');
+    renderOptions(); setupHelpers(); startTimer(MAIN_TIME);
+}
+function skipQuestion(){
+    clearInterval(timerInterval); locked=true; lockAll(); revealCorrect();
+    note('✋ استراح '+teams[attemptTeam].name+' من هالسؤال',''); setTimeout(afterResolve,1400);
+}
+
+/* ===== Timer ===== */
+function startTimer(dur){
+    clearInterval(timerInterval); timerMax=dur; timeLeft=dur;
+    const fill=document.getElementById('timer-fill');
+    fill.style.transition='none'; fill.style.width='100%'; void fill.offsetWidth; fill.style.transition='width 1s linear, background .3s';
+    updateTimerUI();
+    timerInterval=setInterval(()=>{timeLeft--;updateTimerUI();if(timeLeft<=0){clearInterval(timerInterval);if(!locked)timeoutFail();}},1000);
+}
+function updateTimerUI(){
+    document.getElementById('timer-count').innerText=Math.max(timeLeft,0);
+    const fill=document.getElementById('timer-fill'), hud=document.getElementById('hud-timer');
+    fill.style.width=(Math.max(timeLeft,0)/timerMax*100)+'%';
+    const low=timeLeft<=5; fill.classList.toggle('low',low); hud.classList.toggle('low',low);
+}
+
+/* ===== Answer ===== */
+function selectAnswer(i){
+    if(locked) return;
+    if(!helpersLocked){helpersLocked=true;setupHelpers();}
+    if(i===currentQ.correct) finalizeSuccess(); else onWrongChoice(i);
+}
+function onWrongChoice(i){
+    const btn=document.querySelector('#options-container .option-btn[data-index="'+i+'"]');
+    btn.classList.add('wrong'); btn.disabled=true;
+    guessesLeft--; if(guessesLeft>0) return; finalizeFail();
+}
+function lockAll(){document.querySelectorAll('#options-container .option-btn').forEach(b=>b.disabled=true);}
+function revealCorrect(){const c=document.querySelector('#options-container .option-btn[data-index="'+currentQ.correct+'"]');if(c){c.classList.remove('dim');c.classList.add('correct');}}
+function finalizeSuccess(){
+    locked=true; clearInterval(timerInterval); lockAll(); revealCorrect();
+    teams[attemptTeam].score+=currentQ.value;
+    let msg='✅ صح! +'+fmt(currentQ.value)+' لـ '+teams[attemptTeam].name;
+    if(digActive){const o=1-attemptTeam;teams[o].score=Math.max(0,teams[o].score-currentQ.value);msg+=' و -'+fmt(currentQ.value)+' من '+teams[o].name;}
+    note(msg,'good'); setTimeout(afterResolve,1700);
+}
+function finalizeFail(){
+    locked=true; clearInterval(timerInterval); lockAll(); revealCorrect();
+    if(trapActive){teams[attemptTeam].score=Math.max(0,teams[attemptTeam].score-currentQ.value);note('❌ غلط! -'+fmt(currentQ.value)+' من '+teams[attemptTeam].name,'bad');}
+    else note('❌ إجابة خاطئة، ما حصل أحد النقاط','bad');
+    setTimeout(afterResolve,1600);
+}
+function timeoutFail(){guessesLeft=0;finalizeFail();}
+
+/* ===== After resolve ===== */
+function afterResolve(){
+    usedCells[currentQ.catKey]=true; cellsLeft--;
+    currentTeam=1-pickerTeam; digActive=false; trapActive=false; helpersLocked=false; guessesLeft=1;
+    if(cellsLeft<=0){endGame();return;}
+    buildBoard(); renderScoreboard(); go('board-screen');
+}
+
+/* ===== End game ===== */
+function endGame(){
+    clearInterval(timerInterval);
+    const s0=teams[0].score, s1=teams[1].score, tie=s0===s1, w=s0>s1?0:1;
+    document.getElementById('result-emoji').innerText=tie?'🤝':'🏆';
+    document.getElementById('winner-name').innerText=tie?'تعادل!':'فاز '+teams[w].name;
+    document.getElementById('final-scores').innerHTML=
+        '<div class="fs f0'+(!tie&&w===0?' win':'')+'"><div class="fs-name">'+teams[0].name+'</div><div class="fs-pts">'+fmt(s0)+'</div></div>'+
+        '<div class="fs f1'+(!tie&&w===1?' win':'')+'"><div class="fs-name">'+teams[1].name+'</div><div class="fs-pts">'+fmt(s1)+'</div></div>';
+    go('result-screen');
+}
+function rematch(){
+    if(currentUser!=='ضيف'){
+        if(getGamesLeft(currentUser)<=0){toast('⛔ خلصت مبارياتك اليوم (10/10)');return;}
+        if(!incrementGames(currentUser)){toast('⛔ صار خطأ');return;}
+        updateGamesDisplay(); enablePlayButton();
+    }
+    teams.forEach(t=>{t.score=0;t.used={};});
+    currentTeam=0; usedCells={}; cellsLeft=boardCats.length*6;
+    buildBoard(); renderScoreboard(); go('board-screen');
+}
+
+/* ===== Init ===== */
+renderHelperChips();
+</script>
+</body>
+</html>
