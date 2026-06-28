@@ -14,10 +14,13 @@
     --ink:#2B2723; --ink-soft:#8C8178; --line:#ECE3DA;
     --t0:#EE6C2D; --t1:#2E9CCA;
     --green:#27AE60; --green-d:#1E8E50; --wrong:#D63B26;
+    --mafia:#C0392B; --detective:#2E9CCA; --doctor:#27AE60; --citizen:#E67E22;
     --grad-hero:linear-gradient(135deg,#C9341F 0%,#E8572A 48%,#F6A623 100%);
     --grad-btn:linear-gradient(90deg,#E8542A 0%,#F39A2E 100%);
     --grad-red:linear-gradient(90deg,#C9341F 0%,#EE6C2D 100%);
     --grad-blue:linear-gradient(90deg,#2E9CCA 0%,#5FBDE3 100%);
+    --grad-purple:linear-gradient(135deg,#6A2C9E 0%,#9B59B6 100%);
+    --grad-dark:linear-gradient(135deg,#2C2438 0%,#46324F 100%);
     --sh-sm:0 2px 10px rgba(60,40,25,.06);
     --sh-md:0 12px 34px rgba(60,40,25,.10);
     --sh-btn:0 9px 22px rgba(232,84,42,.32);
@@ -29,50 +32,44 @@ body{font-family:'Tajawal','Segoe UI',sans-serif;background:var(--cream);color:v
     min-height:100vh;display:flex;flex-direction:column;align-items:center;
     background-image:radial-gradient(circle at 12% 0,rgba(238,108,45,.05),transparent 38%),radial-gradient(circle at 90% 6%,rgba(46,156,202,.05),transparent 42%);}
 
-/* ===== Hero ===== */
+/* Hero */
 .hero-wrap{width:100%;position:relative;}
-.hero{background:var(--grad-hero);text-align:center;color:#fff;padding:34px 20px 50px;
-    border-radius:0 0 40px 40px;position:relative;overflow:hidden;}
-.hero::after{content:"";position:absolute;inset:0;
-    background:radial-gradient(ellipse at 28% 12%,rgba(255,255,255,.16),transparent 55%);pointer-events:none;}
-.hero::before{content:"";position:absolute;inset:0;opacity:.10;pointer-events:none;
-    background-image:radial-gradient(circle,rgba(255,255,255,.9) 1px,transparent 1.4px);background-size:22px 22px;}
-.logo{position:relative;z-index:2;font-family:'Cairo',sans-serif;font-weight:900;
-    font-size:clamp(2.9rem,11vw,4.4rem);line-height:.82;text-shadow:0 6px 22px rgba(90,18,8,.32);letter-spacing:1px;}
+.hero{background:var(--grad-hero);text-align:center;color:#fff;padding:34px 20px 50px;border-radius:0 0 40px 40px;position:relative;overflow:hidden;}
+.hero::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 28% 12%,rgba(255,255,255,.16),transparent 55%);pointer-events:none;}
+.hero::before{content:"";position:absolute;inset:0;opacity:.10;pointer-events:none;background-image:radial-gradient(circle,rgba(255,255,255,.9) 1px,transparent 1.4px);background-size:22px 22px;}
+.logo{position:relative;z-index:2;font-family:'Cairo',sans-serif;font-weight:900;font-size:clamp(2.9rem,11vw,4.4rem);line-height:.82;text-shadow:0 6px 22px rgba(90,18,8,.32);letter-spacing:1px;}
 .logo span{display:block;} .logo .l2{margin-right:.3em;}
 .logo-underline{position:relative;z-index:2;width:74px;height:5px;border-radius:6px;background:rgba(255,255,255,.85);margin:12px auto 0;}
 .sub-title{position:relative;z-index:2;font-size:clamp(.92rem,2.6vw,1.15rem);font-weight:700;margin-top:12px;opacity:.97;}
 .badges{position:relative;z-index:2;display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:14px;}
-.badge{display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,.16);
-    padding:5px 16px;border-radius:30px;font-size:clamp(.66rem,1.9vw,.82rem);font-weight:700;
-    border:1px solid rgba(255,255,255,.22);backdrop-filter:blur(4px);}
+.badge{display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,.16);padding:5px 16px;border-radius:30px;font-size:clamp(.66rem,1.9vw,.82rem);font-weight:700;border:1px solid rgba(255,255,255,.22);backdrop-filter:blur(4px);}
 
-/* ===== Mini bar ===== */
-.mini-bar{width:100%;background:var(--grad-hero);display:flex;justify-content:space-between;align-items:center;
-    padding:10px 18px;border-radius:0 0 22px 22px;box-shadow:0 6px 22px rgba(60,40,25,.12);flex-wrap:wrap;gap:8px;}
-.brand-mini{font-family:'Cairo',sans-serif;font-weight:900;font-size:1.05rem;line-height:1;text-align:center;color:#fff;text-shadow:0 2px 8px rgba(0,0,0,.2);}
+/* Mini bar */
+.mini-bar{width:100%;background:var(--grad-hero);display:flex;justify-content:space-between;align-items:center;padding:9px 16px;border-radius:0 0 22px 22px;box-shadow:0 6px 22px rgba(60,40,25,.12);flex-wrap:wrap;gap:8px;}
+.brand-mini{font-family:'Cairo',sans-serif;font-weight:900;font-size:1.02rem;line-height:1;color:#fff;text-shadow:0 2px 8px rgba(0,0,0,.2);cursor:pointer;}
 .brand-mini small{display:block;font-size:.5em;letter-spacing:2px;font-weight:700;opacity:.85;}
-.user-info{display:flex;align-items:center;gap:9px;color:#fff;font-weight:700;font-size:.85rem;flex-wrap:wrap;}
-.avatar{width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.22);display:flex;align-items:center;justify-content:center;font-size:1.1rem;border:1.5px solid rgba(255,255,255,.35);}
-.games-left{background:rgba(255,255,255,.16);padding:3px 12px;border-radius:20px;font-size:.74rem;}
+.user-info{display:flex;align-items:center;gap:8px;color:#fff;font-weight:700;font-size:.84rem;flex-wrap:wrap;}
+.avatar{width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.22);display:flex;align-items:center;justify-content:center;font-size:1.15rem;border:1.5px solid rgba(255,255,255,.4);}
+.mb-lvl{background:rgba(0,0,0,.18);padding:2px 9px;border-radius:20px;font-size:.7rem;font-weight:800;}
+.games-left{background:rgba(255,255,255,.16);padding:3px 11px;border-radius:20px;font-size:.72rem;}
 .games-left span{font-weight:900;}
-.logout-btn{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.32);color:#fff;padding:4px 13px;border-radius:20px;cursor:pointer;font-size:.74rem;font-weight:700;font-family:inherit;transition:background .2s;}
+.logout-btn{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.32);color:#fff;padding:4px 12px;border-radius:20px;cursor:pointer;font-size:.72rem;font-weight:700;font-family:inherit;transition:background .2s;}
 .logout-btn:hover{background:rgba(255,255,255,.32);}
 
-/* ===== Layout ===== */
-.container{width:100%;max-width:880px;padding:0 16px 44px;position:relative;z-index:4;margin-top:-30px;}
-.card{background:var(--card);border-radius:var(--r-lg);padding:26px 22px;box-shadow:var(--sh-md);border:1px solid rgba(60,40,25,.05);}
+/* Layout */
+.container{width:100%;max-width:940px;padding:0 16px 44px;position:relative;z-index:4;margin-top:-30px;}
+.card{background:var(--card);border-radius:var(--r-lg);padding:24px 22px;box-shadow:var(--sh-md);border:1px solid rgba(60,40,25,.05);}
 .screen{display:none;animation:rise .42s cubic-bezier(.2,.7,.2,1) both;}
 .screen.active{display:block;}
 @keyframes rise{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:none;}}
 .section-title{font-family:'Cairo',sans-serif;font-weight:800;font-size:1.5rem;text-align:center;color:var(--ink);margin-bottom:5px;}
 .section-sub{text-align:center;color:var(--ink-soft);font-size:.9rem;line-height:1.65;margin-bottom:18px;font-weight:500;}
 
-/* ===== Landing ===== */
+/* Auth */
 .landing-card{text-align:center;padding:26px 22px 22px;background:linear-gradient(180deg,#fff 0%,#fdfaf6 100%);}
 .greeting{font-family:'Cairo',sans-serif;font-weight:900;font-size:1.55rem;color:var(--ink);margin-bottom:2px;}
 .greeting-sub{color:var(--ink-soft);font-size:.93rem;margin-bottom:16px;}
-.login-section{display:flex;flex-direction:column;gap:10px;max-width:420px;margin:0 auto 14px;}
+.login-section{display:flex;flex-direction:column;gap:10px;max-width:420px;margin:0 auto 6px;}
 .login-row{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;}
 .login-input{padding:11px 16px;border-radius:30px;border:2px solid var(--line);font-family:inherit;font-size:.9rem;font-weight:600;background:var(--soft);flex:1;min-width:130px;max-width:200px;transition:border-color .2s,box-shadow .2s;}
 .login-input:focus{outline:none;border-color:var(--orange);box-shadow:0 0 0 4px rgba(238,108,45,.12);}
@@ -83,18 +80,8 @@ body{font-family:'Tajawal','Segoe UI',sans-serif;background:var(--cream);color:v
 .register-link{color:var(--orange);cursor:pointer;font-weight:800;font-size:.85rem;}
 .register-link:hover{text-decoration:underline;}
 .login-msg{color:var(--red);font-size:.8rem;font-weight:700;min-height:1.2em;}
-.features-row{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:12px 0 16px;}
-.feat{background:var(--soft);padding:6px 15px;border-radius:30px;font-size:.74rem;font-weight:700;color:var(--ink-soft);border:1px solid var(--line);}
-.feat strong{color:var(--orange);}
-.side-buttons{display:flex;justify-content:center;gap:7px;flex-wrap:wrap;margin:8px 0 14px;}
-.side-btn{background:var(--soft);border:2px solid var(--line);border-radius:30px;padding:6px 16px;font-family:'Cairo',sans-serif;font-weight:800;font-size:.74rem;color:var(--ink);cursor:pointer;transition:all .2s;}
-.side-btn:hover{background:var(--orange);color:#fff;border-color:var(--orange);transform:translateY(-2px);}
-.side-btn.special{background:var(--grad-red);color:#fff;border-color:transparent;}
-.side-btn.special:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(201,52,31,.3);}
-.game-desc{margin-top:14px;padding:13px 18px;background:var(--soft);border-radius:var(--r-md);border:1px solid var(--line);color:var(--ink-soft);font-size:.85rem;line-height:1.7;}
-.game-desc strong{color:var(--orange);font-weight:800;}
 
-/* ===== Buttons ===== */
+/* Buttons */
 .btn{display:block;width:100%;border:none;cursor:pointer;font-family:'Cairo',sans-serif;font-weight:800;font-size:1rem;color:#fff;padding:14px 20px;border-radius:40px;background:var(--grad-btn);box-shadow:var(--sh-btn);transition:transform .15s,filter .2s;margin-top:14px;}
 .btn:hover{transform:translateY(-2px);filter:brightness(1.04);}
 .btn:active{transform:translateY(0);}
@@ -103,20 +90,77 @@ body{font-family:'Tajawal','Segoe UI',sans-serif;background:var(--cream);color:v
 .btn.ghost{background:#fff;color:var(--orange);border:2px solid var(--orange);box-shadow:none;}
 .btn.ghost:hover{background:#fef8f3;}
 .btn.sm{font-size:.85rem;padding:9px 16px;margin-top:0;}
+.btn.dark{background:var(--grad-dark);box-shadow:0 9px 22px rgba(44,36,56,.3);}
 .btn:disabled{opacity:.5;pointer-events:none;}
-.btn.locked{background:#A79B90;box-shadow:none;cursor:not-allowed;}
 .back-link{background:none;border:none;color:var(--ink-soft);font-family:inherit;font-weight:700;font-size:.85rem;cursor:pointer;padding:4px 2px;margin-bottom:6px;}
 .back-link:hover{color:var(--orange);}
 .err{color:var(--red);font-size:.8rem;font-weight:700;min-height:1.1em;margin-top:8px;text-align:center;}
 
-/* ===== Inputs / team setup ===== */
+/* Hub */
+.hub-grid{display:grid;gap:14px;}
+@media(min-width:780px){.hub-grid{grid-template-columns:1fr 1.5fr;grid-template-areas:"side main";align-items:start;}.hub-side{grid-area:side;}.hub-main{grid-area:main;}}
+.profile-card{display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,#fff,#fdf8f3);border:1px solid var(--line);border-radius:var(--r-lg);padding:16px;box-shadow:var(--sh-sm);margin-bottom:14px;}
+.pc-avatar{width:64px;height:64px;border-radius:50%;background:var(--soft);border:3px solid var(--orange);display:flex;align-items:center;justify-content:center;font-size:2.1rem;flex:0 0 auto;}
+.pc-info{flex:1;min-width:0;}
+.pc-name{font-family:'Cairo',sans-serif;font-weight:900;font-size:1.2rem;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.pc-rank{font-size:.8rem;font-weight:800;color:var(--orange);}
+.pc-lvl-chip{background:var(--grad-btn);color:#fff;font-size:.66rem;font-weight:800;padding:2px 9px;border-radius:20px;font-family:'Cairo',sans-serif;}
+.xp-bar{height:8px;background:#ece3da;border-radius:20px;overflow:hidden;margin-top:8px;}
+.xp-fill{height:100%;background:var(--grad-btn);border-radius:20px;transition:width .5s;}
+.xp-txt{font-size:.68rem;color:var(--ink-soft);font-weight:700;margin-top:4px;}
+.choice-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;}
+@media(max-width:480px){.choice-grid{grid-template-columns:1fr;}}
+.game-choice{border:none;cursor:pointer;border-radius:var(--r-lg);padding:22px 16px;color:#fff;text-align:center;font-family:'Cairo',sans-serif;transition:transform .15s,filter .2s,box-shadow .2s;position:relative;overflow:hidden;}
+.game-choice:hover{transform:translateY(-3px);filter:brightness(1.05);}
+.game-choice.gc-quiz{background:var(--grad-red);box-shadow:0 10px 26px rgba(201,52,31,.28);}
+.game-choice.gc-mafia{background:var(--grad-dark);box-shadow:0 10px 26px rgba(44,36,56,.32);}
+.gc-emoji{font-size:2.6rem;display:block;margin-bottom:6px;filter:drop-shadow(0 3px 6px rgba(0,0,0,.25));}
+.gc-title{font-weight:900;font-size:1.25rem;}
+.gc-desc{font-size:.74rem;font-weight:600;opacity:.92;margin-top:3px;}
+
+/* Panels (leaderboard / friends) */
+.panel{background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);padding:16px;box-shadow:var(--sh-sm);margin-bottom:14px;}
+.panel-title{font-family:'Cairo',sans-serif;font-weight:800;font-size:1.05rem;margin-bottom:12px;display:flex;align-items:center;gap:7px;}
+.lb-row{display:flex;align-items:center;gap:10px;padding:8px 8px;border-radius:12px;transition:background .15s;}
+.lb-row+.lb-row{margin-top:2px;}
+.lb-row.me{background:#fef5ee;}
+.lb-rank{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Cairo',sans-serif;font-weight:900;font-size:.78rem;flex:0 0 auto;background:var(--soft);color:var(--ink-soft);}
+.lb-rank.r1{background:#F4C430;color:#7a5a00;} .lb-rank.r2{background:#CFD3D8;color:#4a4f55;} .lb-rank.r3{background:#E2A06A;color:#5e3414;}
+.lb-av{width:32px;height:32px;border-radius:50%;background:var(--soft);border:2px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:1.05rem;flex:0 0 auto;}
+.lb-name{flex:1;min-width:0;font-weight:800;font-size:.9rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.lb-name small{display:block;font-size:.66rem;color:var(--orange);font-weight:800;}
+.lb-games{font-family:'Cairo',sans-serif;font-weight:900;font-size:.95rem;color:var(--ink);}
+.lb-games small{font-size:.6rem;color:var(--ink-soft);font-weight:700;display:block;text-align:center;}
+.empty-note{color:var(--ink-soft);font-size:.82rem;text-align:center;padding:8px;font-weight:600;}
+.add-friend-row{display:flex;gap:6px;margin-top:10px;}
+.add-friend-row input{flex:1;padding:9px 12px;border-radius:30px;border:2px solid var(--line);background:var(--soft);font-family:inherit;font-size:.85rem;font-weight:600;min-width:0;}
+.add-friend-row input:focus{outline:none;border-color:var(--orange);}
+.friend-row{display:flex;align-items:center;gap:10px;padding:8px;border-radius:12px;}
+.friend-row+.friend-row{margin-top:2px;border-top:1px solid var(--line);padding-top:10px;}
+.fr-actions{display:flex;gap:5px;flex:0 0 auto;}
+.fr-btn{border:none;cursor:pointer;border-radius:9px;padding:5px 9px;font-size:.68rem;font-weight:800;font-family:'Cairo',sans-serif;color:#fff;transition:filter .2s,transform .12s;}
+.fr-btn:hover{filter:brightness(1.06);transform:translateY(-1px);}
+.fr-btn.q{background:var(--grad-red);} .fr-btn.m{background:var(--grad-dark);}
+.fr-del{background:none;border:none;color:var(--ink-soft);cursor:pointer;font-size:1rem;padding:0 2px;}
+.fr-del:hover{color:var(--wrong);}
+
+/* Account edit */
+.av-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(52px,1fr));gap:8px;margin:6px 0 14px;}
+.av-opt{aspect-ratio:1;border:2px solid var(--line);border-radius:14px;background:var(--soft);display:flex;align-items:center;justify-content:center;font-size:1.7rem;cursor:pointer;transition:all .15s;}
+.av-opt:hover{transform:translateY(-2px);border-color:#dcd2c8;}
+.av-opt.sel{border-color:var(--orange);background:#fef5ee;box-shadow:0 4px 12px rgba(238,108,45,.2);transform:translateY(-2px);}
+.stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:8px;}
+.stat-box{background:var(--soft);border:1px solid var(--line);border-radius:var(--r-md);padding:12px 6px;text-align:center;}
+.stat-box .sv{font-family:'Cairo',sans-serif;font-weight:900;font-size:1.5rem;color:var(--orange);line-height:1;}
+.stat-box .sl{font-size:.68rem;color:var(--ink-soft);font-weight:700;margin-top:3px;}
+
+/* Inputs / team setup */
 .field label{display:block;margin-bottom:5px;font-weight:700;color:var(--ink);font-size:.85rem;}
 .field input{width:100%;padding:11px 14px;border-radius:var(--r-sm);border:2px solid var(--line);background:var(--soft);color:var(--ink);font-size:.95rem;font-family:inherit;font-weight:600;transition:border-color .2s,box-shadow .2s;}
 .field input:focus{outline:none;border-color:var(--orange);box-shadow:0 0 0 4px rgba(238,108,45,.12);}
 .teams-setup{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:4px 0;}
 .team-col{background:var(--soft);border:2px solid var(--line);border-radius:var(--r-md);padding:13px;}
-.team-col.tc0{border-color:rgba(238,108,45,.4);}
-.team-col.tc1{border-color:rgba(46,156,202,.4);}
+.team-col.tc0{border-color:rgba(238,108,45,.4);} .team-col.tc1{border-color:rgba(46,156,202,.4);}
 .team-col h3{font-family:'Cairo',sans-serif;font-size:.98rem;margin-bottom:9px;text-align:center;}
 .team-col.tc0 h3{color:var(--t0);} .team-col.tc1 h3{color:var(--t1);}
 .hsel-title{text-align:center;font-weight:700;font-size:.74rem;color:var(--ink-soft);margin:9px 0 6px;}
@@ -127,7 +171,7 @@ body{font-family:'Tajawal','Segoe UI',sans-serif;background:var(--cream);color:v
 .hchip:hover{transform:translateY(-2px);border-color:#dcd2c8;}
 .hchip.on{border-color:var(--orange);background:#fef5ee;box-shadow:0 3px 10px rgba(238,108,45,.15);}
 
-/* ===== Category picker ===== */
+/* Category picker */
 .pick-bar{display:flex;align-items:center;gap:8px;justify-content:space-between;background:var(--soft);border:2px solid var(--line);border-radius:var(--r-md);padding:8px 14px;margin-bottom:14px;flex-wrap:wrap;}
 .pick-count{font-family:'Cairo',sans-serif;font-weight:800;font-size:.92rem;}
 .pick-count b{color:var(--orange);}
@@ -137,8 +181,7 @@ body{font-family:'Tajawal','Segoe UI',sans-serif;background:var(--cream);color:v
 .sec-label{display:inline-block;background:var(--grad-btn);color:#fff;padding:4px 18px;border-radius:30px;font-family:'Cairo',sans-serif;font-weight:800;font-size:.8rem;box-shadow:0 4px 12px rgba(232,84,42,.22);}
 .cat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(98px,1fr));gap:10px;}
 .pick{cursor:pointer;border-radius:var(--r-md);overflow:hidden;border:3px solid #ece3da;background:#fff;transition:transform .14s,border-color .2s,box-shadow .2s;position:relative;box-shadow:var(--sh-sm);}
-.pick .ic{height:80px;display:flex;align-items:center;justify-content:center;
-    background:linear-gradient(160deg,rgba(255,255,255,.86),rgba(255,255,255,.74)),var(--c,#ddd);}
+.pick .ic{height:80px;display:flex;align-items:center;justify-content:center;background:linear-gradient(160deg,rgba(255,255,255,.86),rgba(255,255,255,.74)),var(--c,#ddd);}
 .pick .ic .emoji{font-size:2.4rem;filter:drop-shadow(0 3px 5px rgba(0,0,0,.16));}
 .pick .ibadge{position:absolute;top:5px;left:5px;width:17px;height:17px;border-radius:50%;background:#1E8BD6;color:#fff;font-family:'Cairo',sans-serif;font-weight:900;font-size:.62rem;font-style:italic;display:flex;align-items:center;justify-content:center;border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.2);}
 .pick .nm{padding:6px 4px;text-align:center;font-family:'Cairo',sans-serif;font-weight:800;font-size:.74rem;color:#fff;background:var(--orange);}
@@ -146,7 +189,7 @@ body{font-family:'Tajawal','Segoe UI',sans-serif;background:var(--cream);color:v
 .pick.sel{border-color:var(--green);box-shadow:0 8px 18px rgba(39,174,96,.26);}
 .pick.sel::after{content:'✓';position:absolute;top:5px;right:5px;width:20px;height:20px;border-radius:50%;background:var(--green);color:#fff;font-weight:900;display:flex;align-items:center;justify-content:center;font-size:.68rem;border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.2);}
 
-/* ===== Board ===== */
+/* Board */
 .scoreboard{display:flex;align-items:stretch;gap:9px;margin-bottom:11px;}
 .ts{flex:1;background:var(--soft);border:2px solid var(--line);border-radius:var(--r-md);padding:9px 6px;text-align:center;transition:all .25s;}
 .ts .ts-name{font-family:'Cairo',sans-serif;font-weight:800;font-size:.9rem;margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
@@ -160,9 +203,7 @@ body{font-family:'Tajawal','Segoe UI',sans-serif;background:var(--cream);color:v
 .board{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
 @media (min-width:620px){.board{grid-template-columns:repeat(3,1fr);}}
 .cat{border:1px solid var(--line);border-radius:var(--r-md);overflow:hidden;background:#fff;box-shadow:var(--sh-sm);display:flex;flex-direction:column;}
-.cat-head{padding:11px 6px 9px;font-family:'Cairo',sans-serif;font-weight:800;font-size:.86rem;color:#fff;
-    background:linear-gradient(160deg,rgba(255,255,255,.18),rgba(0,0,0,.07)),var(--c);
-    display:flex;flex-direction:column;align-items:center;gap:3px;text-align:center;line-height:1.15;text-shadow:0 1px 3px rgba(0,0,0,.2);}
+.cat-head{padding:11px 6px 9px;font-family:'Cairo',sans-serif;font-weight:800;font-size:.86rem;color:#fff;background:linear-gradient(160deg,rgba(255,255,255,.18),rgba(0,0,0,.07)),var(--c);display:flex;flex-direction:column;align-items:center;gap:3px;text-align:center;line-height:1.15;text-shadow:0 1px 3px rgba(0,0,0,.2);}
 .cat-head>span{font-size:1.5rem;line-height:1;filter:drop-shadow(0 2px 3px rgba(0,0,0,.18));}
 .cells{display:grid;grid-template-columns:1fr 1fr;gap:6px;padding:7px;}
 .cell{border:2px solid var(--line);background:var(--soft);color:var(--ink);border-radius:10px;padding:14px 4px;font-family:'Cairo',sans-serif;font-weight:900;font-size:.98rem;cursor:pointer;transition:transform .12s,background .2s,border-color .2s,color .2s,box-shadow .2s;}
@@ -170,7 +211,7 @@ body{font-family:'Tajawal','Segoe UI',sans-serif;background:var(--cream);color:v
 .cell.used{background:#f1ece6;color:#cfc7bd;border-color:#ebe3d9;cursor:default;}
 @media (max-width:560px){.teams-setup{grid-template-columns:1fr;}.login-input{min-width:110px;max-width:100%;}}
 
-/* ===== Question ===== */
+/* Question */
 .q-meta{display:flex;justify-content:space-between;align-items:center;gap:6px;margin-bottom:12px;flex-wrap:wrap;}
 .q-team{font-family:'Cairo',sans-serif;font-weight:800;font-size:.88rem;padding:5px 12px;border-radius:30px;color:#fff;}
 .q-team.q0{background:var(--grad-btn);} .q-team.q1{background:var(--grad-blue);}
@@ -187,7 +228,6 @@ body{font-family:'Tajawal','Segoe UI',sans-serif;background:var(--cream);color:v
 .timer-fill{height:100%;width:100%;background:var(--grad-btn);border-radius:20px;transition:width 1s linear,background .3s;}
 .timer-fill.low{background:linear-gradient(90deg,#bf2a18,#e0402c);}
 .options-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:12px;}
-/* الخيارات تبقى عمودين (يمين ويسار) على كل الشاشات */
 .option-btn{background:var(--soft);border:2px solid transparent;color:var(--ink);padding:13px;font-size:.96rem;font-weight:700;font-family:inherit;border-radius:var(--r-sm);cursor:pointer;text-align:right;display:flex;align-items:center;gap:9px;transition:transform .12s,background .2s,border-color .2s,box-shadow .2s,opacity .2s;}
 .option-btn .tag{flex:0 0 auto;width:26px;height:26px;border-radius:8px;background:#fff;color:var(--orange);font-family:'Cairo',sans-serif;font-weight:900;display:flex;align-items:center;justify-content:center;font-size:.78rem;border:1px solid var(--line);transition:background .2s,color .2s;}
 .option-btn:hover:not(:disabled){background:#f3ece4;border-color:var(--orange);transform:translateY(-2px);}
@@ -204,10 +244,9 @@ body{font-family:'Tajawal','Segoe UI',sans-serif;background:var(--cream);color:v
 .help-btn:hover:not(:disabled){border-color:var(--hc,var(--orange));background:var(--soft);transform:translateY(-2px);}
 .help-btn:disabled{opacity:.4;cursor:default;}
 
-/* ===== Result ===== */
+/* Result */
 .result-screen{text-align:center;}
-.trophy-ring{width:96px;height:96px;margin:4px auto 6px;border-radius:50%;display:flex;align-items:center;justify-content:center;
-    background:radial-gradient(circle,rgba(244,160,36,.22),transparent 70%);font-size:3rem;}
+.trophy-ring{width:96px;height:96px;margin:4px auto 6px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle,rgba(244,160,36,.22),transparent 70%);font-size:3rem;}
 .winner-name{font-family:'Cairo',sans-serif;font-weight:900;font-size:1.7rem;margin:2px 0 6px;background:var(--grad-btn);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
 .final-scores{display:flex;justify-content:center;gap:10px;margin:14px 0 6px;}
 .fs{flex:1;max-width:170px;background:var(--soft);border:2px solid var(--line);border-radius:var(--r-md);padding:12px;}
@@ -217,7 +256,47 @@ body{font-family:'Tajawal','Segoe UI',sans-serif;background:var(--cream);color:v
 .fs.win{border-color:var(--orange);box-shadow:0 5px 16px rgba(238,108,45,.22);}
 .footer-note{text-align:center;color:#b9aea3;font-size:.72rem;margin:12px 0 18px;}
 
-/* ===== Register modal ===== */
+/* ===== Mafia ===== */
+.mafia-card{background:linear-gradient(180deg,#fff,#fbf8f5);}
+.mafia-title{font-family:'Cairo',sans-serif;font-weight:900;font-size:1.4rem;text-align:center;margin-bottom:4px;}
+.mafia-phase{text-align:center;font-weight:800;color:var(--ink-soft);font-size:.85rem;margin-bottom:14px;}
+.mafia-instruction{background:var(--grad-dark);color:#fff;border-radius:var(--r-md);padding:16px;text-align:center;font-family:'Cairo',sans-serif;font-weight:700;font-size:1.05rem;line-height:1.6;margin-bottom:14px;box-shadow:0 8px 22px rgba(44,36,56,.25);}
+.mafia-instruction .mi-emoji{font-size:2rem;display:block;margin-bottom:6px;}
+.mp-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:14px;}
+@media(min-width:620px){.mp-grid{grid-template-columns:repeat(3,1fr);}}
+.mp{border:2px solid var(--line);background:var(--soft);border-radius:var(--r-md);padding:12px 8px;text-align:center;font-family:'Cairo',sans-serif;font-weight:800;font-size:.92rem;cursor:pointer;transition:transform .12s,border-color .2s,background .2s,box-shadow .2s;display:flex;flex-direction:column;align-items:center;gap:4px;}
+.mp .mp-num{width:24px;height:24px;border-radius:50%;background:#fff;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:.74rem;color:var(--ink-soft);}
+.mp.click:hover{transform:translateY(-2px);border-color:var(--orange);box-shadow:0 6px 14px rgba(238,108,45,.18);}
+.mp.dead{opacity:.5;background:#f1ece6;border-style:dashed;cursor:default;}
+.mp.dead .mp-num{background:#e6ddd4;}
+.mp-dead-tag{font-size:.62rem;color:var(--wrong);font-weight:800;}
+.mp-role-tag{font-size:.64rem;font-weight:800;padding:1px 8px;border-radius:20px;color:#fff;}
+.role-card{border-radius:var(--r-lg);padding:26px 18px;text-align:center;color:#fff;margin-bottom:14px;box-shadow:0 10px 28px rgba(0,0,0,.2);}
+.role-card .rc-emoji{font-size:3.4rem;}
+.role-card .rc-name{font-family:'Cairo',sans-serif;font-weight:900;font-size:1.7rem;margin:6px 0 8px;}
+.role-card .rc-desc{font-size:.92rem;font-weight:600;line-height:1.6;opacity:.97;}
+.role-mafia{background:linear-gradient(135deg,#9B1B1B,#C0392B);}
+.role-detective{background:linear-gradient(135deg,#1F6F9E,#2E9CCA);}
+.role-doctor{background:linear-gradient(135deg,#1E8E50,#27AE60);}
+.role-citizen{background:linear-gradient(135deg,#C26A1C,#E67E22);}
+.stepper{display:flex;align-items:center;justify-content:center;gap:14px;margin:6px 0;}
+.stepper button{width:38px;height:38px;border-radius:50%;border:2px solid var(--line);background:#fff;font-size:1.3rem;font-weight:900;color:var(--orange);cursor:pointer;font-family:'Cairo',sans-serif;transition:all .15s;display:flex;align-items:center;justify-content:center;}
+.stepper button:hover{border-color:var(--orange);background:#fef5ee;}
+.stepper .sp-val{font-family:'Cairo',sans-serif;font-weight:900;font-size:1.7rem;min-width:46px;text-align:center;}
+.role-toggles{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:10px 0;}
+.role-toggle{border:2px solid var(--line);border-radius:var(--r-md);padding:9px 14px;font-family:'Cairo',sans-serif;font-weight:800;font-size:.82rem;cursor:pointer;display:flex;align-items:center;gap:6px;background:#fff;transition:all .15s;}
+.role-toggle .rt-em{font-size:1.1rem;}
+.role-toggle.on{border-color:var(--orange);background:#fef5ee;box-shadow:0 3px 10px rgba(238,108,45,.15);}
+.comp-note{text-align:center;background:var(--soft);border:1px solid var(--line);border-radius:var(--r-md);padding:10px;font-weight:700;font-size:.85rem;color:var(--ink);margin:10px 0;}
+.comp-note b{color:var(--orange);}
+.mp-names{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:8px 0;}
+@media(max-width:480px){.mp-names{grid-template-columns:1fr;}}
+.mp-names input{padding:9px 12px;border-radius:var(--r-sm);border:2px solid var(--line);background:var(--soft);font-family:inherit;font-weight:600;font-size:.88rem;}
+.mp-names input:focus{outline:none;border-color:var(--orange);}
+.det-result{border-radius:var(--r-md);padding:18px;text-align:center;color:#fff;font-family:'Cairo',sans-serif;font-weight:900;font-size:1.2rem;margin-bottom:14px;}
+.det-result.bad{background:var(--mafia);} .det-result.good{background:var(--doctor);}
+
+/* Register modal */
 .register-modal{display:none;position:fixed;inset:0;background:rgba(43,39,35,.55);z-index:1000;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(3px);}
 .register-modal.show{display:flex;animation:fade .2s ease both;}
 @keyframes fade{from{opacity:0;}to{opacity:1;}}
@@ -230,10 +309,8 @@ body{font-family:'Tajawal','Segoe UI',sans-serif;background:var(--cream);color:v
 .close-modal{margin-top:10px;background:none;border:none;color:var(--ink-soft);font-size:.9rem;cursor:pointer;font-weight:700;font-family:inherit;}
 .close-modal:hover{color:var(--orange);}
 
-/* ===== Toast ===== */
-.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(20px);background:var(--ink);color:#fff;
-    padding:11px 22px;border-radius:30px;font-family:'Cairo',sans-serif;font-weight:700;font-size:.88rem;z-index:1200;
-    opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;box-shadow:0 10px 30px rgba(0,0,0,.25);}
+/* Toast */
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(20px);background:var(--ink);color:#fff;padding:11px 22px;border-radius:30px;font-family:'Cairo',sans-serif;font-weight:700;font-size:.88rem;z-index:1200;opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;box-shadow:0 10px 30px rgba(0,0,0,.25);max-width:90%;text-align:center;}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
 
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;}}
@@ -247,30 +324,27 @@ body{font-family:'Tajawal','Segoe UI',sans-serif;background:var(--cream);color:v
         <div class="logo"><span>سين</span><span class="l2">جيم</span></div>
         <div class="logo-underline"></div>
         <div class="sub-title">الجواب عليك، و السؤال علينا</div>
-        <div class="badges">
-            <span class="badge">☕ كوفي هاوس</span>
-            <span class="badge">6 فئات · 36 سؤال · 3 وسائل</span>
-        </div>
+        <div class="badges"><span class="badge">☕ كوفي هاوس</span><span class="badge">سين جيم + مافيا</span></div>
     </div>
 </div>
 <div class="mini-bar" id="mini-bar" style="display:none;">
-    <div class="brand-mini">سين جيم<small>كوفي هاوس</small></div>
+    <div class="brand-mini" onclick="go('hub-screen')">سين جيم<small>كوفي هاوس</small></div>
     <div class="user-info" id="userInfo">
-        <div class="avatar">👤</div>
+        <div class="avatar" id="mb-avatar">👤</div>
         <span id="userName">ضيف</span>
-        <span class="games-left" id="gamesLeft">🎮 متبقي: <span id="gamesCount">10</span></span>
+        <span class="mb-lvl" id="mb-level">Lv 1</span>
+        <span class="games-left">🎮 <span id="gamesCount">10</span></span>
         <button class="logout-btn" onclick="logout()">خروج</button>
     </div>
 </div>
 
 <div class="container">
 
-    <!-- 0) Landing -->
-    <div id="landing-screen" class="screen active">
+    <!-- Auth -->
+    <div id="auth-screen" class="screen active">
         <div class="card landing-card">
             <div class="greeting">يا هلا فيكم ☕</div>
             <div class="greeting-sub">سجّل دخولك أو ادخل كضيف عشان تبدأ اللعب</div>
-
             <div class="login-section" id="loginSection">
                 <div class="login-row">
                     <input class="login-input" type="text" id="loginName" placeholder="اسم المستخدم" maxlength="20" />
@@ -283,33 +357,72 @@ body{font-family:'Tajawal','Segoe UI',sans-serif;background:var(--cream);color:v
                 <div><span class="register-link" onclick="showRegister()">＋ إنشاء حساب جديد</span></div>
                 <div class="login-msg" id="loginMsg"></div>
             </div>
+        </div>
+    </div>
 
-            <div class="features-row">
-                <span class="feat">📚 <strong>6</strong> فئات</span>
-                <span class="feat">📝 <strong>36</strong> سؤال</span>
-                <span class="feat">🛠️ <strong>3</strong> وسائل لكل فريق</span>
-                <span class="feat">🎯 <strong>10</strong> مباريات يومياً</span>
+    <!-- Hub -->
+    <div id="hub-screen" class="screen">
+        <div class="hub-grid">
+            <div class="hub-main">
+                <div class="profile-card">
+                    <div class="pc-avatar" id="hubAvatar">😎</div>
+                    <div class="pc-info">
+                        <div class="pc-name"><span id="hubName">لاعب</span> <span class="pc-lvl-chip" id="hubLvlChip">Lv 1</span></div>
+                        <div class="pc-rank" id="hubRank">مبتدئ 🌱</div>
+                        <div class="xp-bar"><div class="xp-fill" id="hubXpFill" style="width:0%"></div></div>
+                        <div class="xp-txt" id="hubXpTxt">0 / 100 نقطة خبرة</div>
+                    </div>
+                </div>
+                <div class="choice-grid">
+                    <button class="game-choice gc-quiz" onclick="enterQuiz()">
+                        <span class="gc-emoji">🎯</span><span class="gc-title">سين جيم</span>
+                        <span class="gc-desc">أسئلة فريقين · ١٥ فئة</span>
+                    </button>
+                    <button class="game-choice gc-mafia" onclick="enterMafia()">
+                        <span class="gc-emoji">🕵️</span><span class="gc-title">المافيا</span>
+                        <span class="gc-desc">لعبة أدوار وخداع</span>
+                    </button>
+                </div>
+                <button class="btn ghost" onclick="openAccount()">⚙️ تعديل الحساب</button>
             </div>
-
-            <div class="side-buttons">
-                <button class="side-btn" onclick="soon()">📋 إرشادات لعبية</button>
-                <button class="side-btn" onclick="soon()">🏆 إرشادات بطولة</button>
-                <button class="side-btn special" onclick="soon()">🌙 رمضانيات</button>
-                <button class="side-btn" onclick="soon()">🎮 ألعاب</button>
-                <button class="side-btn" onclick="soon()">🌍 كأس العالم</button>
-            </div>
-
-            <button class="btn create" id="playBtn" onclick="checkAndStart()">＋ إنشاء لعبة</button>
-
-            <div class="game-desc">
-                <strong>سين جيم</strong> — لعبة أسئلة جماعية بأكثر من ١٥ فئة منوّعة، أسئلة للكبار والطلبة، ووسائل مساعدة تزيد الحماس.
+            <div class="hub-side">
+                <div class="panel">
+                    <div class="panel-title">🏆 توب اللاعبين</div>
+                    <div id="leaderboard"></div>
+                </div>
+                <div class="panel">
+                    <div class="panel-title">👥 الأصدقاء</div>
+                    <div id="friendsList"></div>
+                    <div class="add-friend-row" id="addFriendRow">
+                        <input type="text" id="friendName" placeholder="اسم صديق مسجّل" maxlength="20" />
+                        <button class="btn sm" style="margin:0;" onclick="addFriend()">＋</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- 1) Setup -->
+    <!-- Account edit -->
+    <div id="account-screen" class="screen">
+        <button class="back-link" onclick="go('hub-screen')">‹ رجوع</button>
+        <div class="card">
+            <h2 class="section-title">⚙️ حسابي</h2>
+            <p class="section-sub">اختر صورتك وشوف مستواك وإحصائياتك.</p>
+            <div class="stat-grid">
+                <div class="stat-box"><div class="sv" id="acLvl">1</div><div class="sl">المستوى</div></div>
+                <div class="stat-box"><div class="sv" id="acGames">0</div><div class="sl">مباريات</div></div>
+                <div class="stat-box"><div class="sv" id="acXp">0</div><div class="sl">نقاط خبرة</div></div>
+            </div>
+            <div class="comp-note" id="acRank">الرتبة: مبتدئ 🌱</div>
+            <div style="font-weight:800;font-size:.9rem;margin:10px 0 2px;">اختر صورتك:</div>
+            <div class="av-grid" id="avatarGrid"></div>
+            <button class="btn" onclick="saveAccount()">حفظ</button>
+        </div>
+    </div>
+
+    <!-- Seen Jeem: Setup -->
     <div id="setup-screen" class="screen">
-        <button class="back-link" onclick="go('landing-screen')">‹ رجوع</button>
+        <button class="back-link" onclick="go('hub-screen')">‹ رجوع</button>
         <div class="card">
             <h2 class="section-title">حدّد معلومات الفرق</h2>
             <p class="section-sub">اكتبوا أسماء الفريقين، وكل فريق يختار ٣ وسائل مساعدة.</p>
@@ -332,7 +445,7 @@ body{font-family:'Tajawal','Segoe UI',sans-serif;background:var(--cream);color:v
         </div>
     </div>
 
-    <!-- 2) Category picker -->
+    <!-- Seen Jeem: Categories -->
     <div id="category-screen" class="screen">
         <button class="back-link" onclick="go('setup-screen')">‹ رجوع</button>
         <div class="card">
@@ -349,7 +462,7 @@ body{font-family:'Tajawal','Segoe UI',sans-serif;background:var(--cream);color:v
         </div>
     </div>
 
-    <!-- 3) Board -->
+    <!-- Seen Jeem: Board -->
     <div id="board-screen" class="screen">
         <div class="card">
             <div class="scoreboard" id="scoreboard"></div>
@@ -358,7 +471,7 @@ body{font-family:'Tajawal','Segoe UI',sans-serif;background:var(--cream);color:v
         </div>
     </div>
 
-    <!-- 4) Question -->
+    <!-- Seen Jeem: Question -->
     <div id="question-screen" class="screen">
         <div class="card">
             <div class="q-meta">
@@ -374,15 +487,49 @@ body{font-family:'Tajawal','Segoe UI',sans-serif;background:var(--cream);color:v
         </div>
     </div>
 
-    <!-- 5) Result -->
+    <!-- Seen Jeem: Result -->
     <div id="result-screen" class="screen result-screen">
         <div class="card">
             <div class="trophy-ring" id="result-emoji">🏆</div>
             <div class="winner-name" id="winner-name"></div>
             <div class="final-scores" id="final-scores"></div>
             <button class="btn" onclick="rematch()">العبوا مرة ثانية</button>
-            <button class="btn ghost" onclick="go('landing-screen')">من البداية</button>
+            <button class="btn ghost" onclick="go('hub-screen')">القائمة الرئيسية</button>
         </div>
+    </div>
+
+    <!-- Mafia: Setup -->
+    <div id="mafia-setup-screen" class="screen">
+        <button class="back-link" onclick="go('hub-screen')">‹ رجوع</button>
+        <div class="card mafia-card">
+            <h2 class="section-title">🕵️ لعبة المافيا</h2>
+            <p class="section-sub">جهّزوا اللاعبين والأدوار. تُلعب على جهاز واحد — أحدكم يكون "الراوي" يدير اللعبة.</p>
+            <div style="font-weight:800;text-align:center;font-size:.9rem;">عدد اللاعبين</div>
+            <div class="stepper">
+                <button onclick="mafiaCount(-1)">−</button>
+                <div class="sp-val" id="mpCount">6</div>
+                <button onclick="mafiaCount(1)">+</button>
+            </div>
+            <div class="mp-names" id="mpNames"></div>
+            <div style="font-weight:800;text-align:center;font-size:.9rem;margin-top:6px;">عدد المافيا</div>
+            <div class="stepper">
+                <button onclick="mafiaMafCount(-1)">−</button>
+                <div class="sp-val" id="mpMafia" style="color:var(--mafia);">2</div>
+                <button onclick="mafiaMafCount(1)">+</button>
+            </div>
+            <div class="role-toggles">
+                <div class="role-toggle on" id="rt-detective" onclick="mafiaToggleRole('detective')"><span class="rt-em">🕵️</span> محقق</div>
+                <div class="role-toggle on" id="rt-doctor" onclick="mafiaToggleRole('doctor')"><span class="rt-em">💉</span> طبيب</div>
+            </div>
+            <div class="comp-note" id="mpComp"></div>
+            <div class="err" id="mafia-err"></div>
+            <button class="btn dark" onclick="mafiaStart()">وزّع الأدوار وابدأ</button>
+        </div>
+    </div>
+
+    <!-- Mafia: dynamic play -->
+    <div id="mafia-screen" class="screen">
+        <div class="card mafia-card"><div id="mafia-inner"></div></div>
     </div>
 
     <p class="footer-note">سين جيم — كوفي هاوس · نسخة للتسلية</p>
@@ -404,116 +551,222 @@ body{font-family:'Tajawal','Segoe UI',sans-serif;background:var(--cream);color:v
 <div class="toast" id="toast"></div>
 
 <script>
-/* ============================================================
-   تخزين آمن — يستخدم localStorage عند الاستضافة، ويتحول لذاكرة مؤقتة
-   داخل المعاينة (بدون أخطاء)
-   ============================================================ */
-const _mem = {};
-function lsGet(k){ try{ return localStorage.getItem(k); }catch(e){ return (k in _mem) ? _mem[k] : null; } }
-function lsSet(k,v){ try{ localStorage.setItem(k,v); }catch(e){ _mem[k]=v; } }
+/* ===== Safe storage (localStorage on host, memory in preview) ===== */
+const _mem={};
+function lsGet(k){try{return localStorage.getItem(k);}catch(e){return (k in _mem)?_mem[k]:null;}}
+function lsSet(k,v){try{localStorage.setItem(k,v);}catch(e){_mem[k]=v;}}
+function lsDel(k){try{localStorage.removeItem(k);}catch(e){delete _mem[k];}}
 
-/* ============================================================
-   نظام المستخدمين
-   ============================================================ */
-const MAX_GAMES_PER_DAY = 10;
-function getUsers(){ try{ return JSON.parse(lsGet('sirjim_users')) || {}; }catch(e){ return {}; } }
-function saveUsers(u){ lsSet('sirjim_users', JSON.stringify(u)); }
-function getToday(){ return new Date().toDateString(); }
+/* ===== Accounts ===== */
+const MAX_GAMES_PER_DAY=10;
+const AVATARS=['😎','🦁','🐯','🐼','🦊','🐵','🐶','🐱','🦄','🐲','👑','🤖','👽','🦅','🦉','⚽','🎮','🍕','☕','🌟','🔥','💎','🎯','🦈','🐺','🐧','🐢','🐸'];
+function getUsers(){try{return JSON.parse(lsGet('sirjim_users'))||{};}catch(e){return {};}}
+function saveUsers(u){lsSet('sirjim_users',JSON.stringify(u));}
+function getGuest(){try{return JSON.parse(lsGet('sirjim_guest'))||{gamesToday:0,lastPlayed:''};}catch(e){return {gamesToday:0,lastPlayed:''};}}
+function saveGuest(g){lsSet('sirjim_guest',JSON.stringify(g));}
+function getToday(){return new Date().toDateString();}
+function levelFromXp(xp){return Math.floor((xp||0)/100)+1;}
+function rankTitle(lvl){if(lvl>=15)return'أسطورة 👑';if(lvl>=10)return'خبير 💎';if(lvl>=6)return'محترف 🔥';if(lvl>=3)return'لاعب ⭐';return'مبتدئ 🌱';}
+
+let currentUser=null; // username string or 'ضيف'
+
 function getUserData(username){
     const users=getUsers(); if(!users[username]) return null;
-    const data=users[username];
-    if(data.lastPlayed!==getToday()){ data.gamesToday=0; data.lastPlayed=getToday(); saveUsers(users); }
-    return data;
+    const d=users[username];
+    if(d.lastPlayed!==getToday()){ d.gamesToday=0; d.lastPlayed=getToday(); saveUsers(users); }
+    return d;
 }
-function incrementGames(username){
-    const users=getUsers(); if(!users[username]) return false;
-    const today=getToday();
-    if(users[username].lastPlayed!==today){ users[username].gamesToday=0; users[username].lastPlayed=today; }
-    if(users[username].gamesToday>=MAX_GAMES_PER_DAY) return false;
-    users[username].gamesToday++; saveUsers(users); return true;
+function gamesLeft(){
+    if(currentUser==='ضيف'){const g=getGuest();const t=getToday();const used=(g.lastPlayed===t)?g.gamesToday:0;return Math.max(0,MAX_GAMES_PER_DAY-used);}
+    const d=getUserData(currentUser); if(!d) return 0; return Math.max(0,MAX_GAMES_PER_DAY-d.gamesToday);
 }
-function getGamesLeft(username){ const d=getUserData(username); if(!d) return 0; return Math.max(0,MAX_GAMES_PER_DAY-d.gamesToday); }
+function consumeGame(){
+    if(currentUser==='ضيف'){const g=getGuest();const t=getToday();if(g.lastPlayed!==t){g.gamesToday=0;g.lastPlayed=t;}if(g.gamesToday>=MAX_GAMES_PER_DAY)return false;g.gamesToday++;saveGuest(g);return true;}
+    const users=getUsers();const u=users[currentUser];if(!u)return false;const t=getToday();
+    if(u.lastPlayed!==t){u.gamesToday=0;u.lastPlayed=t;}
+    if(u.gamesToday>=MAX_GAMES_PER_DAY)return false;
+    u.gamesToday++;saveUsers(users);return true;
+}
+function awardGame(){ // on completed game
+    if(currentUser==='ضيف') return;
+    const users=getUsers();const u=users[currentUser];if(!u)return;
+    u.gamesPlayed=(u.gamesPlayed||0)+1;
+    u.xp=(u.xp||0)+25;
+    saveUsers(users);
+    updateMiniBar();
+}
 
-let currentUser=null;
-
+/* ===== Auth ===== */
 function login(){
     const name=document.getElementById('loginName').value.trim();
     const pass=document.getElementById('loginPass').value.trim();
     const msg=document.getElementById('loginMsg'); msg.style.color='';
-    if(!name||!pass){ msg.textContent='⚠️ اكتب اسم المستخدم وكلمة المرور'; return; }
+    if(!name||!pass){msg.textContent='⚠️ اكتب اسم المستخدم وكلمة المرور';return;}
     const users=getUsers();
-    if(!users[name]){ msg.textContent='❌ هذا الحساب غير موجود'; return; }
-    if(users[name].password!==pass){ msg.textContent='❌ كلمة المرور خاطئة'; return; }
-    currentUser=name; msg.style.color='var(--green)'; msg.textContent='✅ تم تسجيل الدخول!';
+    if(!users[name]){msg.textContent='❌ هذا الحساب غير موجود';return;}
+    if(users[name].password!==pass){msg.textContent='❌ كلمة المرور خاطئة';return;}
+    currentUser=name; lsSet('sirjim_session',name);
     afterLogin();
 }
-function loginGuest(){ currentUser='ضيف'; document.getElementById('loginMsg').textContent=''; afterLogin(); }
-
+function loginGuest(){currentUser='ضيف';lsSet('sirjim_session','ضيف');document.getElementById('loginMsg').textContent='';afterLogin();}
 function register(){
     const name=document.getElementById('regName').value.trim();
     const pass=document.getElementById('regPass').value.trim();
     const confirm=document.getElementById('regPassConfirm').value.trim();
     const msg=document.getElementById('regMsg'); msg.className='reg-msg';
-    if(!name||name.length<2){ msg.textContent='⚠️ الاسم لازم حرفين على الأقل'; return; }
-    if(!pass||pass.length<3){ msg.textContent='⚠️ كلمة المرور لازم ٣ أحرف على الأقل'; return; }
-    if(pass!==confirm){ msg.textContent='⚠️ كلمتا المرور غير متطابقتين'; return; }
+    if(!name||name.length<2){msg.textContent='⚠️ الاسم لازم حرفين على الأقل';return;}
+    if(name==='ضيف'){msg.textContent='⚠️ اختر اسماً آخر';return;}
+    if(!pass||pass.length<3){msg.textContent='⚠️ كلمة المرور لازم ٣ أحرف على الأقل';return;}
+    if(pass!==confirm){msg.textContent='⚠️ كلمتا المرور غير متطابقتين';return;}
     const users=getUsers();
-    if(users[name]){ msg.textContent='❌ هذا الاسم مستخدم بالفعل'; return; }
-    users[name]={ password:pass, gamesToday:0, lastPlayed:getToday() };
+    if(users[name]){msg.textContent='❌ هذا الاسم مستخدم بالفعل';return;}
+    users[name]={password:pass,avatar:AVATARS[Math.floor(Math.random()*AVATARS.length)],xp:0,gamesPlayed:0,gamesToday:0,lastPlayed:getToday(),friends:[]};
     saveUsers(users);
     msg.className='reg-msg success'; msg.textContent='✅ تم إنشاء الحساب!';
-    setTimeout(()=>{
-        hideRegister();
-        document.getElementById('loginName').value=name;
-        document.getElementById('loginPass').value=pass;
-        const lm=document.getElementById('loginMsg'); lm.style.color='var(--green)'; lm.textContent='✅ سجّل دخولك الآن';
-    },900);
+    setTimeout(()=>{hideRegister();currentUser=name;lsSet('sirjim_session',name);afterLogin();},800);
 }
-function showRegister(){ const m=document.getElementById('registerModal'); m.classList.add('show'); document.getElementById('regMsg').textContent=''; document.getElementById('regMsg').className='reg-msg'; }
-function hideRegister(){ document.getElementById('registerModal').classList.remove('show'); }
-
+function showRegister(){document.getElementById('registerModal').classList.add('show');document.getElementById('regMsg').textContent='';document.getElementById('regMsg').className='reg-msg';}
+function hideRegister(){document.getElementById('registerModal').classList.remove('show');}
 function afterLogin(){
     document.getElementById('hero-block').style.display='none';
     document.getElementById('mini-bar').style.display='flex';
-    document.getElementById('loginSection').style.display='none';
-    document.getElementById('userName').textContent=currentUser;
-    document.querySelector('.register-link').style.display='none';
-    updateGamesDisplay();
-    enablePlayButton();
-    switchScreen('landing-screen');
-}
-function updateGamesDisplay(){
-    const left = currentUser==='ضيف' ? '♾️' : getGamesLeft(currentUser);
-    document.getElementById('gamesCount').textContent = left;
-}
-function enablePlayButton(){
-    const btn=document.getElementById('playBtn');
-    if(currentUser==='ضيف'){ btn.disabled=false; btn.textContent='＋ إنشاء لعبة'; btn.className='btn create'; return; }
-    const left=getGamesLeft(currentUser);
-    if(left<=0){ btn.disabled=true; btn.textContent='⛔ انتهت مباريات اليوم (10/10)'; btn.className='btn create locked'; }
-    else { btn.disabled=false; btn.textContent='＋ إنشاء لعبة ('+left+' متبقي)'; btn.className='btn create'; }
-}
-function checkAndStart(){
-    if(currentUser===null){ toast('سجّل دخولك أو ادخل كضيف أول 🙂'); return; }
-    if(currentUser==='ضيف'){ go('setup-screen'); return; }
-    if(getGamesLeft(currentUser)<=0){ toast('⛔ خلصت مبارياتك اليوم (10/10)'); return; }
-    go('setup-screen');
+    updateMiniBar();
+    renderHub();
+    go('hub-screen');
 }
 function logout(){
-    currentUser=null;
+    currentUser=null; lsDel('sirjim_session');
     document.getElementById('hero-block').style.display='block';
     document.getElementById('mini-bar').style.display='none';
-    document.getElementById('loginSection').style.display='flex';
-    document.querySelector('.register-link').style.display='inline';
+    document.getElementById('loginName').value=''; document.getElementById('loginPass').value='';
     document.getElementById('loginMsg').textContent='';
-    document.getElementById('loginName').value='';
-    document.getElementById('loginPass').value='';
-    const btn=document.getElementById('playBtn'); btn.disabled=false; btn.textContent='＋ إنشاء لعبة'; btn.className='btn create';
-    go('landing-screen');
+    go('auth-screen');
+}
+function updateMiniBar(){
+    const reg=currentUser!=='ضيف'?getUserData(currentUser):null;
+    document.getElementById('mb-avatar').textContent= reg?reg.avatar:'🙂';
+    document.getElementById('userName').textContent=currentUser;
+    document.getElementById('mb-level').textContent= reg?('Lv '+levelFromXp(reg.xp)):'ضيف';
+    document.getElementById('gamesCount').textContent=gamesLeft();
 }
 
+/* ===== Hub ===== */
+function renderHub(){
+    const reg=currentUser!=='ضيف'?getUserData(currentUser):null;
+    const xp=reg?reg.xp||0:0; const lvl=levelFromXp(xp);
+    document.getElementById('hubAvatar').textContent= reg?reg.avatar:'🙂';
+    document.getElementById('hubName').textContent=currentUser;
+    document.getElementById('hubLvlChip').textContent='Lv '+lvl;
+    document.getElementById('hubRank').textContent=rankTitle(lvl);
+    const into=xp%100;
+    document.getElementById('hubXpFill').style.width=into+'%';
+    document.getElementById('hubXpTxt').textContent= reg?(into+' / 100 نقطة خبرة'):'ادخل بحساب لتجمع نقاط خبرة ومستوى';
+    renderLeaderboard(); renderFriends();
+    // hide friend-add for guest
+    document.getElementById('addFriendRow').style.display = (currentUser==='ضيف')?'none':'flex';
+}
+function renderLeaderboard(){
+    const users=getUsers();
+    const arr=Object.keys(users).map(n=>({name:n,xp:users[n].xp||0,games:users[n].gamesPlayed||0,av:users[n].avatar||'😎',lvl:levelFromXp(users[n].xp||0)}));
+    arr.sort((a,b)=> b.games-a.games || b.xp-a.xp);
+    const top=arr.slice(0,8);
+    const box=document.getElementById('leaderboard');
+    if(top.length===0){box.innerHTML='<div class="empty-note">ما في لاعبين بعد — العب أول مباراة!</div>';return;}
+    box.innerHTML=top.map((p,i)=>{
+        const rc=i===0?'r1':i===1?'r2':i===2?'r3':'';
+        const me=(p.name===currentUser)?' me':'';
+        return '<div class="lb-row'+me+'"><div class="lb-rank '+rc+'">'+(i+1)+'</div>'+
+            '<div class="lb-av">'+p.av+'</div>'+
+            '<div class="lb-name">'+p.name+'<small>Lv '+p.lvl+' · '+rankTitle(p.lvl)+'</small></div>'+
+            '<div class="lb-games">'+p.games+'<small>مباراة</small></div></div>';
+    }).join('');
+}
+function renderFriends(){
+    const box=document.getElementById('friendsList');
+    if(currentUser==='ضيف'){box.innerHTML='<div class="empty-note">سجّل بحساب عشان تضيف أصدقاء.</div>';return;}
+    const users=getUsers(); const me=users[currentUser];
+    const friends=(me&&me.friends)?me.friends:[];
+    if(friends.length===0){box.innerHTML='<div class="empty-note">ما عندك أصدقاء بعد — أضف صديق بالأسفل.</div>';return;}
+    box.innerHTML=friends.map(fn=>{
+        const f=users[fn]; const av=f?f.avatar:'❓'; const lvl=f?levelFromXp(f.xp||0):'-';
+        return '<div class="friend-row"><div class="lb-av">'+av+'</div>'+
+            '<div class="lb-name">'+fn+'<small>Lv '+lvl+'</small></div>'+
+            '<div class="fr-actions">'+
+            '<button class="fr-btn q" onclick="playFriend(\''+encodeURIComponent(fn)+'\',\'quiz\')">سين جيم</button>'+
+            '<button class="fr-btn m" onclick="playFriend(\''+encodeURIComponent(fn)+'\',\'mafia\')">مافيا</button>'+
+            '<button class="fr-del" onclick="removeFriend(\''+encodeURIComponent(fn)+'\')">✕</button>'+
+            '</div></div>';
+    }).join('');
+}
+function addFriend(){
+    if(currentUser==='ضيف')return;
+    const inp=document.getElementById('friendName'); const fn=inp.value.trim();
+    if(!fn)return;
+    const users=getUsers();
+    if(fn===currentUser){toast('ما تقدر تضيف نفسك 🙂');return;}
+    if(!users[fn]){toast('ما في حساب بهالاسم على هالجهاز');return;}
+    const me=users[currentUser]; if(!me.friends)me.friends=[];
+    if(me.friends.includes(fn)){toast('صاحبك مضاف من قبل');return;}
+    me.friends.push(fn); saveUsers(users); inp.value=''; renderFriends(); toast('تمت إضافة '+fn+' ✅');
+}
+function removeFriend(fnEnc){
+    const fn=decodeURIComponent(fnEnc);
+    const users=getUsers(); const me=users[currentUser];
+    me.friends=(me.friends||[]).filter(x=>x!==fn); saveUsers(users); renderFriends();
+}
+function playFriend(fnEnc,type){
+    const fn=decodeURIComponent(fnEnc);
+    if(type==='quiz'){
+        document.getElementById('team0').value=currentUser==='ضيف'?'فريقي':currentUser;
+        document.getElementById('team1').value=fn;
+        enterQuiz();
+    } else {
+        mafiaPrefill=[currentUser==='ضيف'?'أنا':currentUser, fn];
+        enterMafia();
+    }
+}
+
+/* ===== Account edit ===== */
+let _avatarSel=null;
+function openAccount(){
+    if(currentUser==='ضيف'){toast('الضيوف ما عندهم حساب — سجّل عشان تعدّل صورتك ومستواك');return;}
+    const u=getUserData(currentUser); const lvl=levelFromXp(u.xp||0);
+    document.getElementById('acLvl').textContent=lvl;
+    document.getElementById('acGames').textContent=u.gamesPlayed||0;
+    document.getElementById('acXp').textContent=u.xp||0;
+    document.getElementById('acRank').textContent='الرتبة: '+rankTitle(lvl);
+    _avatarSel=u.avatar;
+    const grid=document.getElementById('avatarGrid');
+    grid.innerHTML=AVATARS.map(a=>'<div class="av-opt'+(a===_avatarSel?' sel':'')+'" onclick="selAvatar(\''+a+'\')">'+a+'</div>').join('');
+    go('account-screen');
+}
+function selAvatar(a){_avatarSel=a;document.querySelectorAll('#avatarGrid .av-opt').forEach(el=>el.classList.toggle('sel',el.textContent===a));}
+function saveAccount(){
+    const users=getUsers(); if(users[currentUser]&&_avatarSel){users[currentUser].avatar=_avatarSel;saveUsers(users);}
+    updateMiniBar(); renderHub(); toast('تم الحفظ ✅'); go('hub-screen');
+}
+
+/* ===== Nav / utils ===== */
+function go(id){switchScreen(id);}
+function switchScreen(id){
+    document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    const heroVisible=document.getElementById('hero-block').style.display!=='none';
+    document.querySelector('.container').style.marginTop=(id==='auth-screen'&&heroVisible)?'-30px':'18px';
+    window.scrollTo({top:0,behavior:'smooth'});
+}
+function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+function fmt(n){return n.toLocaleString('en-US');}
+function note(txt,kind){const n=document.getElementById('q-note');n.className='q-note'+(kind?(' '+kind):'');n.innerText=txt||'';}
+let _toastT=null;
+function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(_toastT);_toastT=setTimeout(()=>t.classList.remove('show'),2300);}
+
+/* enter games (with daily-limit gate) */
+function enterQuiz(){ if(gamesLeft()<=0){toast('⛔ خلصت مبارياتك اليوم (10/10)');return;} go('setup-screen'); }
+function enterMafia(){ if(gamesLeft()<=0){toast('⛔ خلصت مبارياتك اليوم (10/10)');return;} mafiaSetupInit(); go('mafia-setup-screen'); }
+
 /* ============================================================
-   محرك اللعبة
+   SEEN JEEM ENGINE
    ============================================================ */
 const HELPERS={
     trap:{name:"الفخ",emoji:"💣",color:"#E0A92E",desc:"حوّل السؤال للفريق الثاني، وإذا غلط ينخصم منه"},
@@ -523,9 +776,8 @@ const HELPERS={
     call:{name:"اتصل بصديق",emoji:"📞",color:"#2BB24C",desc:"يزيد لك ٢٥ ثانية وقت"},
 };
 const HELP_ORDER=["trap","rest","double","dig","call"];
-
 const CATEGORIES=[
-/*0*/ {name:"معلومات عامة",icon:"📚",color:"#EE6C2D",questions:[
+{name:"معلومات عامة",icon:"📚",color:"#EE6C2D",questions:[
     {value:100,q:"كم عدد أيام الأسبوع؟",options:["7","6","5","8"],correct:0},
     {value:200,q:"ما العملة الرسمية لليابان؟",options:["الين","اليوان","الوون","الروبية"],correct:0},
     {value:300,q:"كم عدد ألوان علم الكويت؟",options:["4","3","5","2"],correct:0},
@@ -533,7 +785,7 @@ const CATEGORIES=[
     {value:500,q:"كم عدد أرجل الحشرة؟",options:["6","8","4","10"],correct:0},
     {value:600,q:"ما العضو المسؤول عن حاسة الشم؟",options:["الأنف","الأذن","اللسان","العين"],correct:0},
 ]},
-/*1*/ {name:"ثقافة عامة",icon:"🧠",color:"#D4A843",questions:[
+{name:"ثقافة عامة",icon:"🧠",color:"#D4A843",questions:[
     {value:100,q:"من هو مؤسس علم الجبر؟",options:["الخوارزمي","ابن سينا","جابر بن حيان","الكندي"],correct:0},
     {value:200,q:"ما هي عاصمة البرازيل؟",options:["برازيليا","ريو دي جانيرو","ساو باولو","بيلو هوريزونتي"],correct:0},
     {value:300,q:"من أول من اخترع الورق؟",options:["الصينيون","المصريون","اليونانيون","الرومان"],correct:0},
@@ -541,7 +793,7 @@ const CATEGORIES=[
     {value:500,q:"من هو الشاعر الملقّب بـ «شاعر النيل»؟",options:["حافظ إبراهيم","أحمد شوقي","محمود سامي البارودي","إيليا أبو ماضي"],correct:0},
     {value:600,q:"ما هي أكبر مكتبة في العالم؟",options:["مكتبة الكونغرس","المكتبة البريطانية","مكتبة الإسكندرية","مكتبة هارفارد"],correct:0},
 ]},
-/*2*/ {name:"تاريخ",icon:"🏛️",color:"#8E44AD",questions:[
+{name:"تاريخ",icon:"🏛️",color:"#8E44AD",questions:[
     {value:100,q:"في أي سنة بدأت الحرب العالمية الأولى؟",options:["1914","1939","1918","1900"],correct:0},
     {value:200,q:"من أول إنسان مشى على سطح القمر؟",options:["نيل أرمسترونغ","يوري غاغارين","باز ألدرين","جون غلين"],correct:0},
     {value:300,q:"ما أقدم حضارة عُرفت في بلاد الرافدين؟",options:["السومرية","الفرعونية","الرومانية","اليونانية"],correct:0},
@@ -549,7 +801,7 @@ const CATEGORIES=[
     {value:500,q:"من بنى الأهرامات في مصر؟",options:["قدماء المصريين","الرومان","الإغريق","الفينيقيون"],correct:0},
     {value:600,q:"في أي قرن بدأت الثورة الصناعية؟",options:["القرن الثامن عشر","القرن العشرون","القرن السادس عشر","القرن الحادي عشر"],correct:0},
 ]},
-/*3*/ {name:"علوم",icon:"🔬",color:"#27AE60",questions:[
+{name:"علوم",icon:"🔬",color:"#27AE60",questions:[
     {value:100,q:"ما الغاز الذي يحتاجه الإنسان للتنفس؟",options:["الأكسجين","الهيدروجين","النيتروجين","الهيليوم"],correct:0},
     {value:200,q:"كم عدد كواكب المجموعة الشمسية؟",options:["8","9","7","10"],correct:0},
     {value:300,q:"ما المعدن الذي يكون سائلاً في درجة حرارة الغرفة؟",options:["الزئبق","الحديد","الذهب","النحاس"],correct:0},
@@ -557,7 +809,7 @@ const CATEGORIES=[
     {value:500,q:"ما سرعة الضوء تقريباً في الفراغ؟",options:["300,000 كم/ث","150,000 كم/ث","1,000 كم/ث","300 كم/ث"],correct:0},
     {value:600,q:"ما العنصر الأكثر وفرة في الكون؟",options:["الهيدروجين","الأكسجين","الكربون","الحديد"],correct:0},
 ]},
-/*4*/ {name:"جغرافيا",icon:"🗺️",color:"#2E9CCA",questions:[
+{name:"جغرافيا",icon:"🗺️",color:"#2E9CCA",questions:[
     {value:100,q:"ما عاصمة دولة الكويت؟",options:["مدينة الكويت","حولي","الجهراء","الأحمدي"],correct:0},
     {value:200,q:"ما أكبر دولة عربية من حيث المساحة؟",options:["الجزائر","السعودية","مصر","السودان"],correct:0},
     {value:300,q:"في أي قارة تقع البرازيل؟",options:["أمريكا الجنوبية","أفريقيا","آسيا","أوروبا"],correct:0},
@@ -565,7 +817,7 @@ const CATEGORIES=[
     {value:500,q:"ما عاصمة اليابان؟",options:["طوكيو","أوساكا","كيوتو","سيول"],correct:0},
     {value:600,q:"ما أطول سلسلة جبال على سطح الأرض؟",options:["جبال الأنديز","الهيمالايا","جبال الألب","جبال روكي"],correct:0},
 ]},
-/*5*/ {name:"رياضة",icon:"⚽",color:"#E74C3C",questions:[
+{name:"رياضة",icon:"⚽",color:"#E74C3C",questions:[
     {value:100,q:"كم عدد أشواط مباراة كرة القدم الأساسية؟",options:["شوطان","ثلاثة","أربعة","واحد"],correct:0},
     {value:200,q:"كل كم سنة تُقام بطولة كأس العالم لكرة القدم؟",options:["4 سنوات","سنتان","3 سنوات","5 سنوات"],correct:0},
     {value:300,q:"كم عدد لاعبي فريق كرة السلة داخل الملعب؟",options:["5","6","7","4"],correct:0},
@@ -573,7 +825,7 @@ const CATEGORIES=[
     {value:500,q:"ما الدولة الأكثر تتويجاً بكأس العالم لكرة القدم؟",options:["البرازيل","ألمانيا","إيطاليا","الأرجنتين"],correct:0},
     {value:600,q:"كم عدد الحلقات في شعار الألعاب الأولمبية؟",options:["5","4","6","3"],correct:0},
 ]},
-/*6*/ {name:"أفلام",icon:"🎬",color:"#F39C12",questions:[
+{name:"أفلام",icon:"🎬",color:"#F39C12",questions:[
     {value:100,q:"فيلم «العرّاب» من إخراج؟",options:["فرانسيس فورد كوبولا","مارتن سكورسيزي","ستيفن سبيلبرغ","كوينتن تارانتينو"],correct:0},
     {value:200,q:"ما اسم البطل في سلسلة أفلام «جون ويك»؟",options:["جون ويك","جون ماكلين","جيسون بورن","جيمس بوند"],correct:0},
     {value:300,q:"في أي فيلم اشتهرت عبارة «I'll be back»؟",options:["The Terminator","RoboCop","Predator","Iron Man"],correct:0},
@@ -581,15 +833,15 @@ const CATEGORIES=[
     {value:500,q:"من بطل فيلم «Forrest Gump»؟",options:["توم هانكس","براد بيت","ليوناردو ديكابريو","دينزل واشنطن"],correct:0},
     {value:600,q:"من بطولة سلسلة أفلام «Die Hard»؟",options:["بروس ويليس","آرنولد شوارزنيجر","سيلفستر ستالون","تشاك نوريس"],correct:0},
 ]},
-/*7*/ {name:"مسلسلات",icon:"📺",color:"#3498DB",questions:[
+{name:"مسلسلات",icon:"📺",color:"#3498DB",questions:[
     {value:100,q:"في أي مسلسل ظهرت شخصية «والتر وايت»؟",options:["Breaking Bad","Peaky Blinders","Dexter","Homeland"],correct:0},
-    {value:200,q:"مسلسل «Game of Thrones» مبني على روايات؟",options:["جورج ر. ر. مارتن","جيه. آر. آر. تولكين","براندون ساندرسون","باتريك روثفوس"],correct:0},
+    {value:200,q:"مسلسل «Game of Thrones» مبني على روايات؟",options:["جورج ر. ر. مارتن","تولكين","براندون ساندرسون","باتريك روثفوس"],correct:0},
     {value:300,q:"من بطل النسخة الأمريكية من «The Office»؟",options:["ستيف كاريل","ريكي جيرفيه","جون كراسينسكي","رين ويلسون"],correct:0},
     {value:400,q:"مسلسل «Sherlock» من بطولة؟",options:["بنديكت كمبرباتش","روبرت داوني جونيور","جوني لي ميلر","مارتن فريمان"],correct:0},
     {value:500,q:"في مسلسل «Friends»، في أي مجال تعمل راشيل؟",options:["الموضة","الطب","المحاماة","الصحافة"],correct:0},
     {value:600,q:"من مبتكر مسلسل «Vikings»؟",options:["مايكل هيرست","ديفيد تشيس","فينس جيليجان","شون رايان"],correct:0},
 ]},
-/*8*/ {name:"ألعاب فيديو",icon:"🎮",color:"#9B59B6",questions:[
+{name:"ألعاب فيديو",icon:"🎮",color:"#9B59B6",questions:[
     {value:100,q:"من بطل لعبة «Super Mario»؟",options:["ماريو","لويجي","سونيك","كراش"],correct:0},
     {value:200,q:"في أي لعبة تظهر شخصية «Master Chief»؟",options:["Halo","Call of Duty","Gears of War","Fortnite"],correct:0},
     {value:300,q:"ما الشركة المصنّعة لجهاز «بلايستيشن»؟",options:["سوني","مايكروسوفت","نينتندو","سيجا"],correct:0},
@@ -597,7 +849,7 @@ const CATEGORIES=[
     {value:500,q:"في أي لعبة تظهر شخصية «Lara Croft»؟",options:["Tomb Raider","Uncharted","The Last of Us","Horizon"],correct:0},
     {value:600,q:"ما هي اللعبة الأكثر مبيعاً على الإطلاق؟",options:["Minecraft","GTA V","Tetris","PUBG"],correct:0},
 ]},
-/*9*/ {name:"كرة قدم",icon:"🏆",color:"#1ABC9C",questions:[
+{name:"كرة قدم",icon:"🏆",color:"#1ABC9C",questions:[
     {value:100,q:"من الفائز بكأس العالم 2022؟",options:["الأرجنتين","فرنسا","البرازيل","إنجلترا"],correct:0},
     {value:200,q:"من الهداف التاريخي لدوري أبطال أوروبا؟",options:["كريستيانو رونالدو","ليونيل ميسي","روبرت ليفاندوفسكي","راؤول"],correct:0},
     {value:300,q:"في أي نادٍ إيطالي تألّق مارادونا؟",options:["نابولي","إنتر ميلان","ميلان","يوفنتوس"],correct:0},
@@ -605,15 +857,15 @@ const CATEGORIES=[
     {value:500,q:"كم لاعباً في فريق كرة القدم داخل الملعب؟",options:["11","10","12","9"],correct:0},
     {value:600,q:"أي منتخب فاز بأول نسخة من كأس العالم 1930؟",options:["الأوروغواي","الأرجنتين","البرازيل","إيطاليا"],correct:0},
 ]},
-/*10*/ {name:"سيارات",icon:"🚗",color:"#E74C3C",questions:[
+{name:"سيارات",icon:"🚗",color:"#E74C3C",questions:[
     {value:100,q:"من أي دولة شركة سيارات «فورد»؟",options:["أمريكا","ألمانيا","اليابان","إيطاليا"],correct:0},
     {value:200,q:"من أي دولة تأتي سيارات «تويوتا»؟",options:["اليابان","كوريا","الصين","أمريكا"],correct:0},
-    {value:300,q:"من مؤسس شركة «تسلا» الحالي ورئيسها التنفيذي؟",options:["إيلون ماسك","جيف بيزوس","بيل غيتس","مارك زوكربيرغ"],correct:0},
+    {value:300,q:"من مؤسس شركة «تسلا» ورئيسها التنفيذي؟",options:["إيلون ماسك","جيف بيزوس","بيل غيتس","مارك زوكربيرغ"],correct:0},
     {value:400,q:"من أي دولة سيارات «فيراري»؟",options:["إيطاليا","ألمانيا","فرنسا","بريطانيا"],correct:0},
     {value:500,q:"ما الشركة الألمانية صاحبة شعار النجمة الثلاثية؟",options:["مرسيدس","بي إم دبليو","أودي","بورش"],correct:0},
     {value:600,q:"ما نوع المحرك في السيارات الكهربائية؟",options:["محرك كهربائي","محرك بنزين","محرك ديزل","محرك بخاري"],correct:0},
 ]},
-/*11*/ {name:"ألعاب جماعية",icon:"🎲",color:"#8E44AD",questions:[
+{name:"ألعاب جماعية",icon:"🎲",color:"#8E44AD",questions:[
     {value:100,q:"الشطرنج لعبة من أي نوع؟",options:["استراتيجية","حظ","ورق","رياضية"],correct:0},
     {value:200,q:"كم عدد قطع الشطرنج لكل لاعب في البداية؟",options:["16","12","8","10"],correct:0},
     {value:300,q:"لعبة «سكرابل» تعتمد على؟",options:["الكلمات","الأرقام","النرد","الرسم"],correct:0},
@@ -621,7 +873,7 @@ const CATEGORIES=[
     {value:500,q:"لعبة «الدومينو» تُلعب بـ؟",options:["قطع بلاط منقّطة","أوراق لعب","نرد فقط","كرات"],correct:0},
     {value:600,q:"في لعبة «مونوبولي»، ما العملة المستخدمة؟",options:["نقود اللعبة الورقية","عملات ذهبية","نقاط رقمية","بطاقات"],correct:0},
 ]},
-/*12*/ {name:"طبيعة",icon:"🌿",color:"#2ECC71",questions:[
+{name:"طبيعة",icon:"🌿",color:"#2ECC71",questions:[
     {value:100,q:"ما أكبر حيوان على وجه الأرض؟",options:["الحوت الأزرق","الفيل","الزرافة","القرش الأبيض"],correct:0},
     {value:200,q:"ما الحيوان الذي يُلقّب بملك الغابة؟",options:["الأسد","النمر","الفهد","الذئب"],correct:0},
     {value:300,q:"ما أسرع حيوان بري في العالم؟",options:["الفهد","الأسد","الحصان","الغزال"],correct:0},
@@ -629,7 +881,7 @@ const CATEGORIES=[
     {value:500,q:"كم قلباً لدى الأخطبوط؟",options:["3","1","2","4"],correct:0},
     {value:600,q:"أي طائر لا يطير ويعيش في القطب الجنوبي؟",options:["البطريق","النعامة","الدجاج","البطة"],correct:0},
 ]},
-/*13*/ {name:"مطبخ",icon:"🍳",color:"#E67E22",questions:[
+{name:"مطبخ",icon:"🍳",color:"#E67E22",questions:[
     {value:100,q:"ما المكوّن الأساسي لصناعة الخبز؟",options:["الطحين","الأرز","السكر","البيض"],correct:0},
     {value:200,q:"من أي ثمرة يُستخرج زيت الزيتون؟",options:["الزيتون","العنب","النخيل","عبّاد الشمس"],correct:0},
     {value:300,q:"ما المشروب الذي يُصنع من حبوب البُن؟",options:["القهوة","الشاي","الكاكاو","العصير"],correct:0},
@@ -637,7 +889,7 @@ const CATEGORIES=[
     {value:500,q:"ما التوابل التي تُعطي الكاري لونه الأصفر؟",options:["الكركم","الفلفل الأسود","القرفة","الزنجبيل"],correct:0},
     {value:600,q:"ما الدولة المشهورة بأطباق المعكرونة (الباستا)؟",options:["إيطاليا","فرنسا","إسبانيا","اليونان"],correct:0},
 ]},
-/*14*/ {name:"تكنولوجيا",icon:"💻",color:"#2980B9",questions:[
+{name:"تكنولوجيا",icon:"💻",color:"#2980B9",questions:[
     {value:100,q:"ما الشركة المطوّرة لنظام تشغيل أندرويد؟",options:["جوجل","آبل","مايكروسوفت","نوكيا"],correct:0},
     {value:200,q:"ما الشركة المصنّعة لأجهزة آيفون؟",options:["آبل","سامسونج","هواوي","سوني"],correct:0},
     {value:300,q:"ماذا تعني الأحرف CPU في الحاسوب؟",options:["وحدة المعالجة المركزية","ذاكرة التخزين","بطاقة الشاشة","مزوّد الطاقة"],correct:0},
@@ -646,14 +898,11 @@ const CATEGORIES=[
     {value:600,q:"ماذا يعني الاختصار AI؟",options:["الذكاء الاصطناعي","الإنترنت المتقدم","التطبيق الذكي","الواقع المعزّز"],correct:0},
 ]},
 ];
-
 const SECTIONS=[
     {title:"معرفة عامة",   cats:[0,1,2,4]},
     {title:"علوم وطبيعة",  cats:[3,12,14,13]},
     {title:"ترفيه ورياضة", cats:[5,9,6,7,8,10,11]},
 ];
-
-/* ===== State ===== */
 const MAIN_TIME=30, CALL_BONUS=25;
 let selectedHelpers=[[],[]];
 let teams=[], selectedCats=[], boardCats=[];
@@ -663,23 +912,6 @@ let guessesLeft=1, locked=false, helpersLocked=false;
 let digActive=false, trapActive=false;
 let timerInterval=null, timeLeft=0, timerMax=MAIN_TIME;
 
-/* ===== Utils ===== */
-function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
-function fmt(n){return n.toLocaleString('en-US');}
-function go(id){switchScreen(id);}
-function switchScreen(id){
-    document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
-    document.getElementById(id).classList.add('active');
-    const heroVisible=document.getElementById('hero-block').style.display!=='none';
-    document.querySelector('.container').style.marginTop=(id==='landing-screen'&&heroVisible)?'-30px':'18px';
-    window.scrollTo({top:0,behavior:'smooth'});
-}
-function note(txt,kind){const n=document.getElementById('q-note');n.className='q-note'+(kind?(' '+kind):'');n.innerText=txt||'';}
-let _toastT=null;
-function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(_toastT);_toastT=setTimeout(()=>t.classList.remove('show'),2200);}
-function soon(){toast('قريباً 🔜');}
-
-/* ===== Setup: helper chips ===== */
 function renderHelperChips(){
     [0,1].forEach(t=>{
         const box=document.getElementById('hsel'+t); box.innerHTML='';
@@ -707,8 +939,6 @@ function goToCategories(){
     teams=[{name:n0,score:0,helpers:selectedHelpers[0].slice(),used:{}},{name:n1,score:0,helpers:selectedHelpers[1].slice(),used:{}}];
     selectedCats=[]; renderCategoryPicker(); updatePickBar(); go('category-screen');
 }
-
-/* ===== Category picker ===== */
 function renderCategoryPicker(){
     const wrap=document.getElementById('cat-sections'); wrap.innerHTML='';
     SECTIONS.forEach(sec=>{
@@ -734,15 +964,10 @@ function updatePickBar(){
     const b=document.getElementById('start-btn'); const ready=selectedCats.length===6;
     b.disabled=!ready; b.style.opacity=ready?'1':'.5';
 }
-
-/* ===== Board ===== */
 function startBoard(){
     if(selectedCats.length!==6) return;
-    if(currentUser!=='ضيف'){
-        if(getGamesLeft(currentUser)<=0){ toast('⛔ خلصت مبارياتك اليوم (10/10)'); return; }
-        if(!incrementGames(currentUser)){ toast('⛔ صار خطأ، حاول مرة ثانية'); return; }
-        updateGamesDisplay(); enablePlayButton();
-    }
+    if(!consumeGame()){ toast('⛔ خلصت مبارياتك اليوم (10/10)'); return; }
+    updateMiniBar();
     boardCats=selectedCats.slice(); currentTeam=0; usedCells={}; cellsLeft=boardCats.length*6;
     buildBoard(); renderScoreboard(); go('board-screen');
 }
@@ -769,8 +994,6 @@ function renderScoreboard(){
     tb.className='turn-banner '+(currentTeam===0?'b0':'b1');
     tb.innerHTML='الدور على: '+teams[currentTeam].name+' — اختاروا فئة';
 }
-
-/* ===== Pick cell ===== */
 function pickCell(ci,qi){
     const key=ci+'-'+qi; if(usedCells[key]) return;
     const base=CATEGORIES[ci].questions[qi];
@@ -780,8 +1003,6 @@ function pickCell(ci,qi){
     pickerTeam=currentTeam; attemptTeam=currentTeam; digActive=false; trapActive=false;
     startAttempt(); go('question-screen');
 }
-
-/* ===== Attempt ===== */
 function startAttempt(){
     locked=false; helpersLocked=false; guessesLeft=1;
     document.getElementById('question-text').innerText=currentQ.q;
@@ -799,8 +1020,6 @@ function renderOptions(){
         btn.onclick=()=>selectAnswer(i); box.appendChild(btn);
     });
 }
-
-/* ===== Helpers during question ===== */
 function setupHelpers(){
     const bar=document.getElementById('helpers-bar'); bar.innerHTML='';
     if(trapActive||helpersLocked){bar.style.display='none';return;}
@@ -837,8 +1056,6 @@ function skipQuestion(){
     clearInterval(timerInterval); locked=true; lockAll(); revealCorrect();
     note('✋ استراح '+teams[attemptTeam].name+' من هالسؤال',''); setTimeout(afterResolve,1400);
 }
-
-/* ===== Timer ===== */
 function startTimer(dur){
     clearInterval(timerInterval); timerMax=dur; timeLeft=dur;
     const fill=document.getElementById('timer-fill');
@@ -852,8 +1069,6 @@ function updateTimerUI(){
     fill.style.width=(Math.max(timeLeft,0)/timerMax*100)+'%';
     const low=timeLeft<=5; fill.classList.toggle('low',low); hud.classList.toggle('low',low);
 }
-
-/* ===== Answer ===== */
 function selectAnswer(i){
     if(locked) return;
     if(!helpersLocked){helpersLocked=true;setupHelpers();}
@@ -880,16 +1095,12 @@ function finalizeFail(){
     setTimeout(afterResolve,1600);
 }
 function timeoutFail(){guessesLeft=0;finalizeFail();}
-
-/* ===== After resolve ===== */
 function afterResolve(){
     usedCells[currentQ.catKey]=true; cellsLeft--;
     currentTeam=1-pickerTeam; digActive=false; trapActive=false; helpersLocked=false; guessesLeft=1;
     if(cellsLeft<=0){endGame();return;}
     buildBoard(); renderScoreboard(); go('board-screen');
 }
-
-/* ===== End game ===== */
 function endGame(){
     clearInterval(timerInterval);
     const s0=teams[0].score, s1=teams[1].score, tie=s0===s1, w=s0>s1?0:1;
@@ -898,21 +1109,239 @@ function endGame(){
     document.getElementById('final-scores').innerHTML=
         '<div class="fs f0'+(!tie&&w===0?' win':'')+'"><div class="fs-name">'+teams[0].name+'</div><div class="fs-pts">'+fmt(s0)+'</div></div>'+
         '<div class="fs f1'+(!tie&&w===1?' win':'')+'"><div class="fs-name">'+teams[1].name+'</div><div class="fs-pts">'+fmt(s1)+'</div></div>';
+    awardGame();
     go('result-screen');
 }
 function rematch(){
-    if(currentUser!=='ضيف'){
-        if(getGamesLeft(currentUser)<=0){toast('⛔ خلصت مبارياتك اليوم (10/10)');return;}
-        if(!incrementGames(currentUser)){toast('⛔ صار خطأ');return;}
-        updateGamesDisplay(); enablePlayButton();
-    }
+    if(!consumeGame()){toast('⛔ خلصت مبارياتك اليوم (10/10)');return;}
+    updateMiniBar();
     teams.forEach(t=>{t.score=0;t.used={};});
     currentTeam=0; usedCells={}; cellsLeft=boardCats.length*6;
     buildBoard(); renderScoreboard(); go('board-screen');
 }
 
+/* ============================================================
+   MAFIA ENGINE (host / narrator on one device)
+   ============================================================ */
+const ROLE={
+    mafia:{name:'المافيا',emoji:'🔪',cls:'role-mafia',tag:'#C0392B',desc:'هدفك التخلص من المدنيين. بالليل اختاروا ضحية، وبالنهار موّهوا على نفسكم.'},
+    detective:{name:'المحقق',emoji:'🕵️',cls:'role-detective',tag:'#2E9CCA',desc:'كل ليلة تكشف هوية لاعب واحد: مافيا أو بريء. استخدم معلوماتك بذكاء.'},
+    doctor:{name:'الطبيب',emoji:'💉',cls:'role-doctor',tag:'#27AE60',desc:'كل ليلة تحمي لاعباً واحداً من القتل. ممكن تحمي نفسك.'},
+    citizen:{name:'مواطن',emoji:'🧑',cls:'role-citizen',tag:'#E67E22',desc:'ما عندك قدرة خاصة. سلاحك النقاش والتصويت لكشف المافيا.'},
+};
+let mafiaPrefill=[];           // names pre-filled from friends
+let mafiaNum=6, mafiaMaf=2, mafiaHasDetective=true, mafiaHasDoctor=true;
+let M=null;                    // active game state
+
+function mafiaSetupInit(){
+    if(mafiaPrefill.length){ mafiaNum=Math.max(4,mafiaPrefill.length); }
+    if(mafiaNum<4)mafiaNum=6;
+    document.getElementById('mpCount').textContent=mafiaNum;
+    document.getElementById('rt-detective').classList.toggle('on',mafiaHasDetective);
+    document.getElementById('rt-doctor').classList.toggle('on',mafiaHasDoctor);
+    renderMafiaNames(); mafiaClampMaf(); renderComp();
+}
+function mafiaCount(d){
+    mafiaNum=Math.min(15,Math.max(4,mafiaNum+d));
+    document.getElementById('mpCount').textContent=mafiaNum;
+    renderMafiaNames(); mafiaClampMaf(); renderComp();
+}
+function renderMafiaNames(){
+    const box=document.getElementById('mpNames');
+    const prev=[...box.querySelectorAll('input')].map(i=>i.value);
+    let html='';
+    for(let i=0;i<mafiaNum;i++){
+        const val = (prev[i]!==undefined&&prev[i]!=='')?prev[i] : (mafiaPrefill[i]||'');
+        html+='<input id="mp-name-'+i+'" placeholder="لاعب '+(i+1)+'" maxlength="14" value="'+val.replace(/"/g,'&quot;')+'">';
+    }
+    box.innerHTML=html;
+    mafiaPrefill=[]; // consumed
+}
+function mafiaMafCount(d){ mafiaMaf+=d; mafiaClampMaf(); renderComp(); }
+function mafiaClampMaf(){
+    const special=(mafiaHasDetective?1:0)+(mafiaHasDoctor?1:0);
+    const maxMaf=Math.max(1, mafiaNum-special-1); // at least 1 citizen
+    if(mafiaMaf<1)mafiaMaf=1; if(mafiaMaf>maxMaf)mafiaMaf=maxMaf;
+    document.getElementById('mpMafia').textContent=mafiaMaf;
+}
+function mafiaToggleRole(r){
+    if(r==='detective'){mafiaHasDetective=!mafiaHasDetective;document.getElementById('rt-detective').classList.toggle('on',mafiaHasDetective);}
+    else {mafiaHasDoctor=!mafiaHasDoctor;document.getElementById('rt-doctor').classList.toggle('on',mafiaHasDoctor);}
+    mafiaClampMaf(); renderComp();
+}
+function renderComp(){
+    const special=(mafiaHasDetective?1:0)+(mafiaHasDoctor?1:0);
+    const citizens=mafiaNum-mafiaMaf-special;
+    let parts=['<b>'+mafiaMaf+'</b> مافيا'];
+    if(mafiaHasDetective)parts.push('محقق');
+    if(mafiaHasDoctor)parts.push('طبيب');
+    parts.push('<b>'+citizens+'</b> مواطن');
+    document.getElementById('mpComp').innerHTML='التركيبة: '+parts.join(' · ');
+}
+function mafiaStart(){
+    const names=[];
+    for(let i=0;i<mafiaNum;i++){ const v=document.getElementById('mp-name-'+i).value.trim(); names.push(v||('لاعب '+(i+1))); }
+    const special=(mafiaHasDetective?1:0)+(mafiaHasDoctor?1:0);
+    if(mafiaMaf+special>=mafiaNum){document.getElementById('mafia-err').innerText='لازم يكون في مواطن واحد على الأقل.';return;}
+    if(!consumeGame()){toast('⛔ خلصت مبارياتك اليوم (10/10)');return;}
+    updateMiniBar();
+    // build roles
+    let roles=[];
+    for(let i=0;i<mafiaMaf;i++)roles.push('mafia');
+    if(mafiaHasDetective)roles.push('detective');
+    if(mafiaHasDoctor)roles.push('doctor');
+    while(roles.length<mafiaNum)roles.push('citizen');
+    roles=shuffle(roles);
+    const players=names.map((nm,i)=>({name:nm,role:roles[i],alive:true}));
+    M={players,phase:'reveal',revealIndex:0,revealShown:false,day:0,
+       hasDetective:mafiaHasDetective,hasDoctor:mafiaHasDoctor,awarded:false,
+       nightQueue:[],nightStep:0,nightKill:null,nightSave:null,detName:'',detIsMafia:false,lastDead:null};
+    document.getElementById('mafia-err').innerText='';
+    go('mafia-screen'); renderMafia();
+}
+function aliveList(){return M.players.map((p,i)=>({p,i})).filter(o=>o.p.alive);}
+function countAlive(){
+    const maf=M.players.filter(p=>p.alive&&p.role==='mafia').length;
+    const oth=M.players.filter(p=>p.alive&&p.role!=='mafia').length;
+    return {maf,oth};
+}
+function checkWin(){const {maf,oth}=countAlive();if(maf===0)return'city';if(maf>=oth)return'mafia';return null;}
+function mafiaPlayersHTML(clickable,excludeMafia){
+    return '<div class="mp-grid">'+M.players.map((p,i)=>{
+        const dead=!p.alive;
+        const can=clickable&&!dead&&!(excludeMafia&&p.role==='mafia');
+        return '<div class="mp'+(can?' click':'')+(dead?' dead':'')+'" '+(can?'onclick="mafiaPick('+i+')"':'')+'>'+
+            '<div class="mp-num">'+(i+1)+'</div>'+p.name+
+            (dead?('<span class="mp-dead-tag">💀 '+ROLE[p.role].name+'</span>'):'')+
+            '</div>';
+    }).join('')+'</div>';
+}
+function renderMafia(){
+    const box=document.getElementById('mafia-inner');
+    const dayTxt=M.day>0?('اليوم '+M.day):'التحضير';
+    let html='';
+    if(M.phase==='reveal'){
+        const p=M.players[M.revealIndex];
+        html='<div class="mafia-title">🤫 توزيع الأدوار</div><div class="mafia-phase">مرّروا الجهاز — كل واحد يشوف دوره بسرّية</div>';
+        if(!M.revealShown){
+            html+='<div class="mafia-instruction"><span class="mi-emoji">📱</span>الجهاز عند: <b>'+p.name+'</b><br>تأكد ما أحد يشوف، وبعدها اضغط.</div>';
+            html+='<button class="btn dark" onclick="mafiaRevealShow()">👁️ اعرض دوري</button>';
+        } else {
+            const r=ROLE[p.role];
+            html+='<div class="role-card '+r.cls+'"><div class="rc-emoji">'+r.emoji+'</div><div class="rc-name">'+r.name+'</div><div class="rc-desc">'+r.desc+'</div></div>';
+            html+='<button class="btn" onclick="mafiaRevealNext()">حفظت ✓ مرّر للتالي</button>';
+        }
+    }
+    else if(M.phase==='night'){
+        const step=M.nightQueue[M.nightStep];
+        html='<div class="mafia-title">🌙 الليل — '+dayTxt+'</div><div class="mafia-phase">الراوي يقرأ بصوت عالٍ</div>';
+        if(step==='mafia'){
+            html+='<div class="mafia-instruction"><span class="mi-emoji">🔪</span>المافيا تستيقظ بصمت وتختار ضحية.<br>الراوي يضغط على اللاعب اللي اختاروه.</div>'+mafiaPlayersHTML(true,true);
+        } else if(step==='detective'){
+            html+='<div class="mafia-instruction"><span class="mi-emoji">🕵️</span>المحقق يستيقظ ويشير إلى لاعب ليكشفه.<br>اضغط على اللاعب المُختار.</div>'+mafiaPlayersHTML(true,false);
+        } else if(step==='doctor'){
+            html+='<div class="mafia-instruction"><span class="mi-emoji">💉</span>الطبيب يستيقظ ويختار من يحمي هذه الليلة.<br>اضغط على اللاعب المُختار.</div>'+mafiaPlayersHTML(true,false);
+        }
+    }
+    else if(M.phase==='detective-result'){
+        html='<div class="mafia-title">🕵️ نتيجة المحقق</div><div class="mafia-phase">للمحقق فقط — لا تقولها بصوت</div>';
+        html+='<div class="det-result '+(M.detIsMafia?'bad':'good')+'">'+M.detName+' : '+(M.detIsMafia?'مافيا 🔴':'بريء 🟢')+'</div>';
+        html+='<button class="btn dark" onclick="mafiaContinueNight()">تمام، كمّل</button>';
+    }
+    else if(M.phase==='day-announce'){
+        const win=checkWin();
+        if(win){ return renderMafiaOver(win); }
+        html='<div class="mafia-title">☀️ النهار — '+dayTxt+'</div><div class="mafia-phase">الكل يستيقظ</div>';
+        if(M.lastDead!=null){
+            const d=M.players[M.lastDead];
+            html+='<div class="mafia-instruction"><span class="mi-emoji">💀</span>الليلة فقدنا: <b>'+d.name+'</b><br>كان دوره: '+ROLE[d.role].name+' '+ROLE[d.role].emoji+'</div>';
+        } else {
+            html+='<div class="mafia-instruction"><span class="mi-emoji">🎉</span>الحمدلله! ما مات أحد هذه الليلة.</div>';
+        }
+        html+='<button class="btn" onclick="mafiaStartVote()">ابدأوا النقاش والتصويت</button>';
+    }
+    else if(M.phase==='day-vote'){
+        html='<div class="mafia-title">🗳️ التصويت — '+dayTxt+'</div><div class="mafia-phase">ناقشوا، ثم اضغطوا على من تشكّون فيه</div>';
+        html+='<div class="mafia-instruction"><span class="mi-emoji">⚖️</span>صوّتوا لإخراج لاعب. راح ينكشف دوره فوراً.</div>'+mafiaPlayersHTML(true,false);
+        html+='<button class="btn ghost" onclick="mafiaSkipVote()">ما في اتفاق — تخطّوا التصويت</button>';
+    }
+    else if(M.phase==='gameover'){
+        return renderMafiaOver(M.winner);
+    }
+    box.innerHTML=html;
+}
+function renderMafiaOver(winner){
+    if(!M.awarded){ awardGame(); M.awarded=true; }
+    M.phase='gameover'; M.winner=winner;
+    const cityWin=winner==='city';
+    let html='<div class="trophy-ring">'+(cityWin?'🏆':'🔪')+'</div>';
+    html+='<div class="winner-name">'+(cityWin?'فاز فريق المدينة 🎉':'فازت المافيا 🔪')+'</div>';
+    html+='<div class="mafia-phase" style="margin-bottom:12px;">'+(cityWin?'كشف المدنيون كل المافيا':'سيطرت المافيا على البلدة')+'</div>';
+    html+='<div class="mp-grid">'+M.players.map((p,i)=>{
+        const r=ROLE[p.role];
+        return '<div class="mp'+(p.alive?'':' dead')+'"><div class="mp-num">'+(i+1)+'</div>'+p.name+
+            '<span class="mp-role-tag" style="background:'+r.tag+'">'+r.emoji+' '+r.name+'</span></div>';
+    }).join('')+'</div>';
+    html+='<button class="btn dark" onclick="mafiaReplay()">العبوا مرة ثانية</button>';
+    html+='<button class="btn ghost" onclick="go(\'hub-screen\')">القائمة الرئيسية</button>';
+    document.getElementById('mafia-inner').innerHTML=html;
+    return;
+}
+function mafiaRevealShow(){M.revealShown=true;renderMafia();}
+function mafiaRevealNext(){
+    M.revealShown=false; M.revealIndex++;
+    if(M.revealIndex>=M.players.length){ startMafiaNight(); }
+    else renderMafia();
+}
+function startMafiaNight(){
+    M.day++; M.nightKill=null; M.nightSave=null;
+    const q=['mafia'];
+    if(M.hasDetective && M.players.some(p=>p.alive&&p.role==='detective')) q.push('detective');
+    if(M.hasDoctor && M.players.some(p=>p.alive&&p.role==='doctor')) q.push('doctor');
+    M.nightQueue=q; M.nightStep=0; M.phase='night'; renderMafia();
+}
+function mafiaPick(idx){
+    if(M.phase==='night'){
+        const step=M.nightQueue[M.nightStep];
+        if(step==='mafia'){ M.nightKill=idx; advanceNight(); }
+        else if(step==='detective'){ M.detName=M.players[idx].name; M.detIsMafia=(M.players[idx].role==='mafia'); M.phase='detective-result'; renderMafia(); }
+        else if(step==='doctor'){ M.nightSave=idx; advanceNight(); }
+    } else if(M.phase==='day-vote'){
+        M.players[idx].alive=false;
+        const win=checkWin();
+        if(win){ renderMafiaOver(win); }
+        else { M.phase='day-announce'; /* reuse announce? no, go next night */ startMafiaNight(); }
+    }
+}
+function mafiaContinueNight(){ M.phase='night'; advanceNight(); }
+function advanceNight(){
+    M.nightStep++;
+    if(M.nightStep>=M.nightQueue.length){ resolveNight(); }
+    else renderMafia();
+}
+function resolveNight(){
+    if(M.nightKill!=null && M.nightKill!==M.nightSave){ M.players[M.nightKill].alive=false; M.lastDead=M.nightKill; }
+    else { M.lastDead=null; }
+    M.phase='day-announce'; renderMafia();
+}
+function mafiaStartVote(){ M.phase='day-vote'; renderMafia(); }
+function mafiaSkipVote(){ const win=checkWin(); if(win){renderMafiaOver(win);return;} startMafiaNight(); }
+function mafiaReplay(){
+    // back to setup with same players/config
+    mafiaPrefill=M.players.map(p=>p.name);
+    mafiaNum=M.players.length;
+    go('mafia-setup-screen'); mafiaSetupInit();
+}
+
 /* ===== Init ===== */
 renderHelperChips();
+(function init(){
+    const sess=lsGet('sirjim_session');
+    if(sess){
+        if(sess==='ضيف'){ currentUser='ضيف'; afterLogin(); }
+        else { const users=getUsers(); if(users[sess]){ currentUser=sess; afterLogin(); } }
+    }
+})();
 </script>
 </body>
 </html>
